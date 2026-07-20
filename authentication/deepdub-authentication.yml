@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source:
+- openapi/deepdub-api-openapi-original.json
+- openapi/deepdub-managed-dub-openapi-original.json
+docs: https://docs.deepdub.ai/authentication
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: >-
+    API key passed in the x-api-key header. Keys follow the format dd-{random}{checksum} where the
+    last 8 characters are a validation checksum; keys always start with the dd- prefix. A shared
+    free-trial key (dd-00000000000000000000000065c9cbfe) is IP rate-limited and US-region only.
+  sources:
+  - openapi/deepdub-api-openapi-original.json
+  - openapi/deepdub-managed-dub-openapi-original.json
+regions:
+  us_default: https://restapi.deepdub.ai/api/v1
+  eu: https://eu-restapi.deepdub.ai/api/v1
+  note: EU region requires a production API key (not available on the free trial).
+key_management: Contact support@deepdub.ai or generate a key from the Deepdub dashboard. Rotate keys periodically; use separate dev/prod keys.
