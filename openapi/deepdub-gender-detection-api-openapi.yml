@@ -1,0 +1,208 @@
+openapi: 3.0.0
+info:
+  title: Deepdub Dubbing Gender Detection API
+  description: Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.
+  contact:
+    email: support@deepdub.ai
+  version: '1.0'
+servers:
+- url: https://restapi.deepdub.ai/api/v1
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Gender Detection
+paths:
+  /gender-detection/classify:
+    post:
+      operationId: classifyGender
+      description: Classify the gender of the speaker in an audio file. Accepts either an audio URL (S3 or HTTP) or base64-encoded audio data. Supports WAV, MP3, FLAC, OGG, and other common audio formats.
+      tags:
+      - Gender Detection
+      summary: Classify speaker gender
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/model.GenderClassificationRequest'
+      responses:
+        '200':
+          description: Successful classification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.GenderClassificationResponse'
+        '400':
+          description: Bad request — must provide either audio_url or audio_base64
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.ErrorResponse'
+              example:
+                error: Bad request
+                detail: Either audio_url or audio_base64 must be provided
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.ErrorResponse'
+              example:
+                error: Unauthorized
+                detail: Invalid or missing API key
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.ErrorResponse'
+              example:
+                error: Classification failed
+                detail: Internal server error
+  /gender-detection/classify/upload:
+    post:
+      operationId: classifyGenderUpload
+      description: Classify the gender of the speaker from an uploaded audio file. Accepts audio files in WAV, MP3, FLAC, OGG, and other common formats.
+      tags:
+      - Gender Detection
+      summary: Classify speaker gender (file upload)
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Audio file to classify (WAV, MP3, FLAC, OGG)
+      responses:
+        '200':
+          description: Successful classification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.GenderClassificationResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.ErrorResponse'
+              example:
+                error: Bad request
+                detail: No file uploaded
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.ErrorResponse'
+              example:
+                error: Unauthorized
+                detail: Invalid or missing API key
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.ErrorResponse'
+              example:
+                error: Classification failed
+                detail: Internal server error
+components:
+  schemas:
+    model.GenderClassificationRequest:
+      description: Request for gender classification from audio
+      type: object
+      properties:
+        audio_url:
+          description: URL to an audio file (S3 or HTTP). Provide either audio_url or audio_base64.
+          type: string
+          example: https://example.com/audio/sample.wav
+        audio_base64:
+          description: Base64-encoded audio data. Provide either audio_url or audio_base64.
+          type: string
+    model.GenderClassificationResponse:
+      description: Gender classification result
+      type: object
+      required:
+      - predicted_gender
+      - confidence
+      properties:
+        predicted_gender:
+          description: Predicted gender of the speaker
+          type: string
+          enum:
+          - female
+          - male
+          example: female
+        confidence:
+          description: Confidence score (0.0 to 1.0)
+          type: number
+          minimum: 0
+          maximum: 1
+          example: 0.95
+        prediction:
+          description: Full prediction scores for both genders
+          type: object
+          properties:
+            female:
+              type: number
+              description: Probability of female speaker
+              example: 0.95
+            male:
+              type: number
+              description: Probability of male speaker
+              example: 0.05
+        duration_seconds:
+          description: Duration of the audio in seconds
+          type: number
+          example: 3.5
+        processing_time_ms:
+          description: Processing time in milliseconds
+          type: number
+          example: 120.5
+    model.ErrorResponse:
+      description: Error response
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: string
+          example: Classification failed
+        detail:
+          type: string
+          example: Either audio_url or audio_base64 must be provided
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key for authentication. Must start with `dd-` prefix.
+externalDocs:
+  description: OpenAPI
+  url: https://restapi.deepdub.ai/api/v1/swagger/index.html

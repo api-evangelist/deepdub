@@ -1,0 +1,266 @@
+openapi: 3.0.0
+info:
+  title: Deepdub Dubbing Infrastructure API
+  description: Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.
+  contact:
+    email: support@deepdub.ai
+  version: '1.0'
+servers:
+- url: https://restapi.deepdub.ai/api/v1
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Infrastructure
+paths:
+  /concurrent_connections/batch:
+    get:
+      operationId: getConcurrentConnectionsBatch
+      description: Get autoscaling group information for multiple models at once.
+      tags:
+      - Infrastructure
+      summary: Get connections for multiple models
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      - description: Comma-separated list of model IDs
+        name: model_ids
+        in: query
+        required: true
+        schema:
+          type: string
+        example: dd-etts-3.0,dd-etts-2.5
+      responses:
+        '200':
+          description: Batch connection info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.Response'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: Invalid model IDs
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: 'Unauthorized: invalid or missing API key'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: Internal server error
+  /concurrent_connections/{model_id}:
+    get:
+      operationId: getConcurrentConnections
+      description: Get the current number of machines and connections available for a specific model's autoscaling group.
+      tags:
+      - Infrastructure
+      summary: Get connections for a model
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      - description: Model ID
+        name: model_id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: dd-etts-3.0
+      responses:
+        '200':
+          description: Connection info for the model
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.ConcurrentConnectionsResponse'
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: 'Unauthorized: invalid or missing API key'
+        '404':
+          description: Model not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: Model not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: Internal server error
+    put:
+      operationId: updateConcurrentConnections
+      description: Update the min, max, and desired capacity of the autoscaling group for a specific model.
+      tags:
+      - Infrastructure
+      summary: Update model autoscaling group
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      - description: Model ID
+        name: model_id
+        in: path
+        required: true
+        schema:
+          type: string
+        example: dd-etts-3.0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/model.UpdateASGRequest'
+        description: Update ASG request
+        required: true
+      responses:
+        '200':
+          description: Updated connection info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.ConcurrentConnectionsResponse'
+        '400':
+          description: Bad request — invalid size parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: Invalid size parameter
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: 'Unauthorized: invalid or missing API key'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: Internal server error
+components:
+  schemas:
+    model.Response:
+      description: Standard API success response wrapper
+      type: object
+      required:
+      - success
+      properties:
+        success:
+          description: Whether the operation was successful
+          type: boolean
+          example: true
+        message:
+          description: Human-readable status message
+          type: string
+          example: Operation successful
+        data:
+          description: Response payload (varies by endpoint)
+    model.UpdateASGRequest:
+      description: Request to update autoscaling group capacity
+      type: object
+      required:
+      - size
+      properties:
+        size:
+          description: Desired capacity for the autoscaling group
+          type: integer
+          minimum: 0
+          example: 5
+    model.APIError:
+      description: Error response returned for all non-2xx status codes
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          description: Always false for error responses
+          type: boolean
+          example: false
+        message:
+          description: Human-readable error message
+          type: string
+          example: Invalid request parameters
+    model.ConcurrentConnectionsResponse:
+      description: Autoscaling group connection information
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Operation successful
+        data:
+          type: object
+          properties:
+            concurrent_connections:
+              description: Current number of active connections
+              type: integer
+              example: 3
+            desired_concurrent_connections:
+              description: Desired number of connections in the autoscaling group
+              type: integer
+              example: 5
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key for authentication. Must start with `dd-` prefix.
+externalDocs:
+  description: OpenAPI
+  url: https://restapi.deepdub.ai/api/v1/swagger/index.html

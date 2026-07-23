@@ -1,0 +1,359 @@
+openapi: 3.0.0
+info:
+  title: Deepdub Dubbing Issues API
+  description: Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.
+  contact:
+    email: support@deepdub.ai
+  version: '1.0'
+servers:
+- url: https://restapi.deepdub.ai/api/v1
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: Issues
+paths:
+  /issues:
+    post:
+      operationId: createIssue
+      description: Report a problem with a TTS generation by creating a new issue. Issues are tracked internally by the Deepdub team and used to improve voice quality. The `problemAudioFile` field can optionally include base64-encoded audio attached to the issue, and `problemSeconds` indicates the timestamp in the audio where the problem appears.
+      tags:
+      - Issues
+      summary: Create a new issue
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/model.CreateIssueRequest'
+            example:
+              generationId: abc123-def456
+              generatedText: Hello world, welcome to Deepdub.
+              problemWord: Deepdub
+              voicePromptId: bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773
+              additionalComments: Mispronunciation of brand name
+              problemSeconds: 2.5
+      responses:
+        '201':
+          description: Issue created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueResponse'
+        '400':
+          description: Bad request — missing required fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: generationId is required
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Unauthorized
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Failed to create issue
+  /issues/{id}:
+    get:
+      operationId: getIssue
+      description: Retrieve an issue by its ID, including its current state (e.g., open, in progress, resolved).
+      tags:
+      - Issues
+      summary: Get an issue by ID
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      - description: Issue ID returned by `POST /issues`
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueResponse'
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Unauthorized
+        '404':
+          description: Issue not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Issue not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Failed to fetch issue
+    put:
+      operationId: updateIssue
+      description: Update an existing issue. All fields are optional — only fields included in the body are updated.
+      tags:
+      - Issues
+      summary: Update an issue
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      - description: Issue ID
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/model.UpdateIssueRequest'
+            example:
+              additionalComments: Confirmed the mispronunciation reproduces with seed=42
+      responses:
+        '200':
+          description: Updated issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Invalid request body
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Unauthorized
+        '404':
+          description: Issue not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Issue not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Failed to update issue
+    delete:
+      operationId: deleteIssue
+      description: Archive an issue. Archived issues are no longer visible via `GET /issues/{id}`.
+      tags:
+      - Issues
+      summary: Delete an issue
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      - description: Issue ID
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueMessageResponse'
+              example:
+                message: Issue deleted
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Unauthorized
+        '404':
+          description: Issue not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Issue not found
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.IssueErrorResponse'
+              example:
+                message: Failed to delete issue
+components:
+  schemas:
+    model.UpdateIssueRequest:
+      description: Payload for updating an existing issue. All fields are optional.
+      type: object
+      properties:
+        generationId:
+          type: string
+        generatedText:
+          type: string
+        problemWord:
+          type: string
+        voicePromptId:
+          type: string
+        additionalComments:
+          type: string
+        problemAudioFile:
+          description: Optional base64-encoded audio clip to attach to the issue
+          type: string
+        problemSeconds:
+          type: number
+    model.CreateIssueRequest:
+      description: Payload for creating a new issue against a TTS generation
+      type: object
+      required:
+      - generationId
+      - generatedText
+      - problemWord
+      - voicePromptId
+      properties:
+        generationId:
+          description: ID of the generation that has the problem
+          type: string
+          example: abc123-def456
+        generatedText:
+          description: Text that was passed to the TTS endpoint
+          type: string
+          example: Hello world, welcome to Deepdub.
+        problemWord:
+          description: Word (or phrase) that was generated incorrectly
+          type: string
+          example: Deepdub
+        voicePromptId:
+          description: ID of the voice prompt used in the generation
+          type: string
+          example: bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773
+        additionalComments:
+          description: Free-form comments describing the problem
+          type: string
+          example: Mispronunciation of brand name
+        problemAudioFile:
+          description: Optional base64-encoded audio clip to attach to the issue
+          type: string
+        problemSeconds:
+          description: Seconds in the audio where the problem appears
+          type: number
+          example: 2.5
+    model.IssueResponse:
+      description: Issue details
+      type: object
+      properties:
+        id:
+          type: string
+          example: iss_12345abcde
+        state:
+          description: Current state of the issue (e.g., open, in progress, resolved)
+          type: string
+          example: open
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        generationId:
+          type: string
+        generatedText:
+          type: string
+        problemWord:
+          type: string
+        voicePromptId:
+          type: string
+        additionalComments:
+          type: string
+        problemSeconds:
+          type: number
+    model.IssueErrorResponse:
+      description: Error response from the issues endpoints
+      type: object
+      properties:
+        message:
+          type: string
+          example: Issue not found
+    model.IssueMessageResponse:
+      description: Simple message response
+      type: object
+      properties:
+        message:
+          type: string
+          example: Issue deleted
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key for authentication. Must start with `dd-` prefix.
+externalDocs:
+  description: OpenAPI
+  url: https://restapi.deepdub.ai/api/v1/swagger/index.html

@@ -1,0 +1,146 @@
+openapi: 3.0.0
+info:
+  title: Deepdub Dubbing TTS API
+  description: Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.
+  contact:
+    email: support@deepdub.ai
+  version: '1.0'
+servers:
+- url: https://restapi.deepdub.ai/api/v1
+  description: Production
+security:
+- ApiKeyAuth: []
+tags:
+- name: TTS
+paths:
+  /tts:
+    post:
+      operationId: generateTTS
+      description: 'Generate and stream TTS audio based on the provided text. Returns an audio stream in the specified format (default MP3). Supported formats: `mp3`, `opus`, `mulaw`. For `wav` or `s16le` output, use the WebSocket API.'
+      tags:
+      - TTS
+      summary: Generate and stream TTS audio
+      parameters:
+      - description: API Key
+        name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+          default: dd-00000000000000000000000065c9cbfe
+        example: dd-00000000000000000000000065c9cbfe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/model.GenerationRequest'
+            example:
+              model: dd-etts-3.0
+              targetText: Hello world, welcome to Deepdub.
+              locale: en-US
+              voicePromptId: bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773
+      responses:
+        '200':
+          description: Audio stream in the requested format (MP3, Opus, or mulaw depending on `format` parameter). The response body is raw audio bytes.
+        '400':
+          description: Bad request — invalid or missing parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: 'Invalid request: missing required field ''targetText'''
+        '401':
+          description: Unauthorized — invalid or missing API key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: 'Unauthorized: invalid or missing API key'
+        '402':
+          description: Insufficient credits — your account has run out of TTS credits
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: 'InsufficientCredits: your account has no remaining credits'
+        '429':
+          description: Rate limit exceeded — too many concurrent requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: 'RateLimit: concurrent request limit exceeded'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/model.APIError'
+              example:
+                success: false
+                message: Internal server error
+components:
+  schemas:
+    model.APIError:
+      description: Error response returned for all non-2xx status codes
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          description: Always false for error responses
+          type: boolean
+          example: false
+        message:
+          description: Human-readable error message
+          type: string
+          example: Invalid request parameters
+    model.GenerationRequest:
+      description: 'Request structure for TTS generation endpoints.
+
+
+        **Optional parameters** (not shown in playground): `generationId` (string), `targetDuration` (number, seconds), `tempo` (number, 0.5–2.0), `variance` (number, 0.0–1.0), `seed` (integer), `temperature` (number, 0.0–1.0), `sampleRate` (integer), `format` (string: mp3/opus/mulaw — default mp3), `promptBoost` (boolean), `superStretch` (boolean), `realtime` (boolean), `cleanAudio` (boolean, default true), `autoGain` (boolean), `publish` (boolean), `accentControl` (object with accentBaseLocale, accentLocale, accentRatio), `performanceReferencePromptId` (string), `voiceReference` (string, base64-encoded audio).'
+      type: object
+      required:
+      - locale
+      - model
+      - targetText
+      - voicePromptId
+      properties:
+        model:
+          description: Model ID to use for generation
+          type: string
+          default: dd-etts-3.0
+          example: dd-etts-3.0
+        targetText:
+          description: Text to be converted to speech
+          type: string
+          example: Hello world, welcome to Deepdub.
+        locale:
+          description: Language locale code (e.g., en-US, fr-FR)
+          type: string
+          example: en-US
+        voicePromptId:
+          description: ID of the voice prompt to use for generation
+          type: string
+          example: bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773
+      additionalProperties: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key for authentication. Must start with `dd-` prefix.
+externalDocs:
+  description: OpenAPI
+  url: https://restapi.deepdub.ai/api/v1/swagger/index.html
