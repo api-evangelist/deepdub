@@ -1,0 +1,135 @@
+generated: '2026-07-18'
+method: derived
+source:
+- openapi/deepdub-api-openapi-original.json
+- openapi/deepdub-managed-dub-openapi-original.json
+note: Entity graph derived from OpenAPI components.schemas and id-reference fields.
+entities:
+- name: model.AccentControl
+  spec: api
+  fields: [accentBaseLocale, accentLocale, accentRatio]
+- name: model.GenerationRequest
+  spec: api
+  fields: [model, targetText, locale, voicePromptId]
+- name: model.GenderClassificationRequest
+  spec: api
+  fields: [audio_url, audio_base64]
+- name: model.GenderClassificationResponse
+  spec: api
+  fields: [predicted_gender, confidence, prediction, duration_seconds, processing_time_ms]
+- name: model.ErrorResponse
+  spec: api
+  fields: [error, detail]
+- name: model.APIError
+  spec: api
+  fields: [success, message]
+- name: model.Response
+  spec: api
+  fields: [success, message, data]
+- name: model.VoicePrompt
+  spec: api
+  fields: [id, title, name, locale, text, createdAt, speakerId, gender, speakingStyle]
+- name: model.VoiceBankAPIRequest
+  spec: api
+  fields: [filename, data, title, text, locale, gender, age, speaking_style, speaker_id, publish]
+- name: model.VoiceBankAPIResponse
+  spec: api
+  fields: [voice_prompt_id]
+- name: model.VoiceBankAPIUpdateRequest
+  spec: api
+  fields: [id, name, locale, gender, age]
+- name: model.ConcurrentConnectionsResponse
+  spec: api
+  fields: [success, message, data]
+- name: model.UpdateASGRequest
+  spec: api
+  fields: [size]
+- name: model.CreateIssueRequest
+  spec: api
+  fields: [generationId, generatedText, problemWord, voicePromptId, additionalComments, problemAudioFile, problemSeconds]
+- name: model.UpdateIssueRequest
+  spec: api
+  fields: [generationId, generatedText, problemWord, voicePromptId, additionalComments, problemAudioFile, problemSeconds]
+- name: model.IssueResponse
+  spec: api
+  fields: [id, state, createdAt, updatedAt, generationId, generatedText, problemWord, voicePromptId, additionalComments, problemSeconds]
+- name: model.IssueMessageResponse
+  spec: api
+  fields: [message]
+- name: model.IssueErrorResponse
+  spec: api
+  fields: [message]
+- name: AdditionalProductStateEnum
+  spec: managed-dub
+- name: AdditionalProductsEnum
+  spec: managed-dub
+- name: AdditionalSourcesEnum
+  spec: managed-dub
+- name: DubbingSegment
+  spec: managed-dub
+  fields: [timestampStart, timestampEnd, characterName, characterId, sourceDialogue, targetDialogue, segmentId]
+- name: DubbingStatusListResponse
+  spec: managed-dub
+  fields: [items, nextToken]
+- name: DubbingStatusResponse
+  spec: managed-dub
+  fields: [requestId, status, detailedTrace, exportPath, additionalProducts, metadata]
+- name: DubbingSubmissionAdditionalProduct
+  spec: managed-dub
+  fields: [product, assetPath, state]
+- name: DubbingSubmissionAdditionalSource
+  spec: managed-dub
+  fields: [source, assetPath]
+- name: DubbingSubmissionRequest
+  spec: managed-dub
+  fields: [sourceLocale, targetLocale, sourceVideoPath, exportPath, contentId, batchId, batchName, workflowType, mixType, sourceSpeechTrackPath, sourceMAndETrackPath, uncompressedAudioPath, segments, titleName, genreName, maturityRating, contentType, priority, needByDate, isVideoWaterMarked, ...]
+- name: DubbingSubmissionResponse
+  spec: managed-dub
+  fields: [requestId]
+- name: DubbingSubmissionUpdateRequest
+  spec: managed-dub
+  fields: [needByDate, metadata]
+- name: HTTPValidationError
+  spec: managed-dub
+  fields: [detail]
+- name: IssueCategory
+  spec: managed-dub
+- name: IssueLabel
+  spec: managed-dub
+- name: IssueSeverity
+  spec: managed-dub
+- name: ManagedDubProgressStatusEnum
+  spec: managed-dub
+- name: MixTypeEnum
+  spec: managed-dub
+- name: RedubbingIssue
+  spec: managed-dub
+  fields: [timestampStart, timestampEnd, category, severity, label, details, timestamp, issueId]
+- name: RedubbingSubmissionRequest
+  spec: managed-dub
+  fields: [generalFeedback, exportPath, issues, revisionNumber, additionalProducts]
+- name: RedubbingSubmissionResponse
+  spec: managed-dub
+  fields: [requestId]
+- name: ValidationError
+  spec: managed-dub
+  fields: [loc, msg, type]
+- name: WorkflowTypeEnum
+  spec: managed-dub
+relationships:
+- from: VoicePrompt
+  to: TTS generation
+  type: has_many
+  via: voicePromptId
+- from: DubbingSubmissionRequest
+  to: DubbingStatusResponse
+  type: has_one
+  via: requestId
+- from: RedubbingSubmissionRequest
+  to: DubbingStatusResponse
+  type: belongs_to
+  via: request_id
+- from: CreateIssueRequest
+  to: IssueResponse
+  type: has_one
+  via: id

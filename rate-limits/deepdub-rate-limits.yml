@@ -1,0 +1,19 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.deepdub.ai/authentication
+note: Concurrency-based rate limiting keyed on subscription plan. Exceeding limits returns HTTP 429 (or WebSocket error errorType RateLimit).
+signal:
+  http_status: 429
+  websocket_error_type: RateLimit
+rate_limits:
+- name: Concurrent requests per customer
+  limit_count: 5
+  window: concurrent
+  scope: customer
+- name: Concurrent requests per IP
+  limit_count: 3
+  window: concurrent
+  scope: ip
+credits:
+  model: TTS generation consumes credits based on generated audio duration.
+  exhausted_error: InsufficientCredits (HTTP 402)

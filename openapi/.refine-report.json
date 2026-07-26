@@ -1,0 +1,26 @@
+{
+  "provider": "deepdub",
+  "sources": [
+    "deepdub-dubbing-api-openapi.yml",
+    "deepdub-gender-detection-api-openapi.yml",
+    "deepdub-infrastructure-api-openapi.yml",
+    "deepdub-issues-api-openapi.yml",
+    "deepdub-tts-api-openapi.yml",
+    "deepdub-usage-api-openapi.yml",
+    "deepdub-voice-api-openapi.yml"
+  ],
+  "outputs": [
+    "deepdub-dubbing-api-openapi.yml",
+    "deepdub-gender-detection-api-openapi.yml",
+    "deepdub-infrastructure-api-openapi.yml",
+    "deepdub-issues-api-openapi.yml",
+    "deepdub-tts-api-openapi.yml",
+    "deepdub-usage-api-openapi.yml",
+    "deepdub-voice-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

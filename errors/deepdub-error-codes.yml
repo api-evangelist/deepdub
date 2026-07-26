@@ -1,0 +1,68 @@
+generated: '2026-07-18'
+method: derived
+source:
+- openapi/deepdub-api-openapi-original.json
+- openapi/deepdub-managed-dub-openapi-original.json
+format: custom-json
+envelopes:
+- schema: model.APIError
+  fields: [success, message]
+  note: Error response returned for all non-2xx status codes (api).
+- schema: model.ErrorResponse
+  fields: [error, detail]
+  note: Error response for gender-detection / validation failures.
+- schema: HTTPValidationError
+  fields: [detail]
+  note: FastAPI/Pydantic 422 validation errors (managed-dub).
+errors:
+- status: 400
+  title: "Bad request — must provide either audio_url or audio_base64"
+  source_operation: openapi/deepdub-api-openapi-original.json#classifyGender
+- status: 400
+  title: "Bad request"
+  source_operation: openapi/deepdub-api-openapi-original.json#classifyGenderUpload
+- status: 400
+  title: "Bad request — missing required fields"
+  source_operation: openapi/deepdub-api-openapi-original.json#createIssue
+- status: 400
+  title: "Bad request — invalid audio data, missing fields, or file exceeds 20 MB limit"
+  source_operation: openapi/deepdub-api-openapi-original.json#createVoicePrompt
+- status: 400
+  title: "Bad request — invalid or missing parameters"
+  source_operation: openapi/deepdub-api-openapi-original.json#generateTTS
+- status: 400
+  title: "Missing or invalid date range or filters"
+  source_operation: openapi/deepdub-api-openapi-original.json#getUsageConcurrent
+- status: 400
+  title: "Bad request — invalid size parameter"
+  source_operation: openapi/deepdub-api-openapi-original.json#updateConcurrentConnections
+- status: 401
+  title: "Unauthorized — invalid or missing API key"
+  source_operation: openapi/deepdub-api-openapi-original.json#generateTTS
+- status: 402
+  title: "Insufficient credits — your account has run out of TTS credits"
+  source_operation: openapi/deepdub-api-openapi-original.json#generateTTS
+- status: 403
+  title: "Forbidden — voice prompt limit reached for your account"
+  source_operation: openapi/deepdub-api-openapi-original.json#createVoicePrompt
+- status: 404
+  title: "Model not found"
+  source_operation: openapi/deepdub-api-openapi-original.json#getConcurrentConnections
+- status: 404
+  title: "Issue not found"
+  source_operation: openapi/deepdub-api-openapi-original.json#getIssue
+- status: 404
+  title: "Voice prompt not found"
+  source_operation: openapi/deepdub-api-openapi-original.json#getVoicePromptById
+- status: 422
+  title: "Validation Error"
+  source_operation: openapi/deepdub-managed-dub-openapi-original.json#create_dubbing_job_dubbing_job_post
+- status: 429
+  title: "Rate limit exceeded — too many concurrent requests"
+  source_operation: openapi/deepdub-api-openapi-original.json#generateTTS
+- status: 500
+  title: "Internal server error"
+  source_operation: openapi/deepdub-api-openapi-original.json#generateTTS
+- status: 504
+  title: "Query timed out — try a smaller date range"
+  source_operation: openapi/deepdub-api-openapi-original.json#getUsageConcurrent

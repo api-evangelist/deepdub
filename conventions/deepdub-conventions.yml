@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: searched
+source:
+- https://docs.deepdub.ai/authentication
+- openapi/deepdub-api-openapi-original.json
+- openapi/deepdub-managed-dub-openapi-original.json
+note: Cross-cutting request/response semantics for the Deepdub REST + Managed Dubbing APIs. Derived from OpenAPI and the docs; cross-links errors/, authentication/, rate-limits/, lifecycle/.
+authentication:
+  style: api-key
+  header: x-api-key
+  key_prefix: "dd-"
+  see: authentication/deepdub-authentication.yml
+idempotency:
+  supported: false
+  note: No idempotency-key header or parameter is documented or present in the OpenAPI. Dubbing jobs are tracked by a server-issued requestId.
+pagination:
+  style: limit
+  params: [limit]
+  note: List endpoints (voice prompts, dubbing jobs) accept a limit query parameter; no cursor/offset tokens are documented.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1
+regions:
+  default_us: https://restapi.deepdub.ai/api/v1
+  eu: https://eu-restapi.deepdub.ai/api/v1
+  note: EU region requires a production API key (not available on the free trial).
+error_envelope:
+  primary:
+    schema: model.APIError
+    fields: [success, message]
+  secondary:
+    schema: model.ErrorResponse
+    fields: [error, detail]
+  validation:
+    schema: HTTPValidationError
+    fields: [detail]
+    note: Managed Dubbing API returns 422 Pydantic validation errors.
+  see: errors/deepdub-error-codes.yml
+rate_limit_signaling:
+  http_status: 429
+  websocket_error_type: RateLimit
+  see: rate-limits/deepdub-rate-limits.yml
+streaming:
+  http: TTS audio streamed as raw bytes (mp3, opus, mulaw)
+  websocket: wss://wsapi.deepdub.ai (wav, s16le real-time streaming)

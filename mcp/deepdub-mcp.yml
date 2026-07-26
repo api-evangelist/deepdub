@@ -1,0 +1,83 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+source:
+- openapi/deepdub-api-openapi-original.json
+- openapi/deepdub-managed-dub-openapi-original.json
+note: No official hosted Deepdub MCP server is published; this is a candidate tool list derived one-per-operation from the OpenAPI. deepdub-ai/deepdub-agent-plugin exists but publishes no MCP manifest.
+server:
+  name: deepdub
+  transport: http
+tools:
+- name: generateTTS
+  description: "Generate and stream TTS audio"
+  source_operation: openapi/deepdub-api-openapi-original.json#generateTTS
+- name: classifyGender
+  description: "Classify speaker gender"
+  source_operation: openapi/deepdub-api-openapi-original.json#classifyGender
+- name: classifyGenderUpload
+  description: "Classify speaker gender (file upload)"
+  source_operation: openapi/deepdub-api-openapi-original.json#classifyGenderUpload
+- name: getVoicePrompts
+  description: "Get voice prompts"
+  source_operation: openapi/deepdub-api-openapi-original.json#getVoicePrompts
+- name: createVoicePrompt
+  description: "Upload a voice sample"
+  source_operation: openapi/deepdub-api-openapi-original.json#createVoicePrompt
+- name: updateVoicePrompt
+  description: "Update a voice prompt"
+  source_operation: openapi/deepdub-api-openapi-original.json#updateVoicePrompt
+- name: getVoicePromptById
+  description: "Get a voice prompt by ID"
+  source_operation: openapi/deepdub-api-openapi-original.json#getVoicePromptById
+- name: deleteVoicePrompt
+  description: "Delete a voice prompt"
+  source_operation: openapi/deepdub-api-openapi-original.json#deleteVoicePrompt
+- name: getUsageConcurrent
+  description: "Get daily concurrent usage"
+  source_operation: openapi/deepdub-api-openapi-original.json#getUsageConcurrent
+- name: getUsageConcurrentByModel
+  description: "Get usage aggregated by model"
+  source_operation: openapi/deepdub-api-openapi-original.json#getUsageConcurrentByModel
+- name: createIssue
+  description: "Create a new issue"
+  source_operation: openapi/deepdub-api-openapi-original.json#createIssue
+- name: getIssue
+  description: "Get an issue by ID"
+  source_operation: openapi/deepdub-api-openapi-original.json#getIssue
+- name: updateIssue
+  description: "Update an issue"
+  source_operation: openapi/deepdub-api-openapi-original.json#updateIssue
+- name: deleteIssue
+  description: "Delete an issue"
+  source_operation: openapi/deepdub-api-openapi-original.json#deleteIssue
+- name: getConcurrentConnectionsBatch
+  description: "Get connections for multiple models"
+  source_operation: openapi/deepdub-api-openapi-original.json#getConcurrentConnectionsBatch
+- name: getConcurrentConnections
+  description: "Get connections for a model"
+  source_operation: openapi/deepdub-api-openapi-original.json#getConcurrentConnections
+- name: updateConcurrentConnections
+  description: "Update model autoscaling group"
+  source_operation: openapi/deepdub-api-openapi-original.json#updateConcurrentConnections
+- name: create_dubbing_job_dubbing_job_post
+  description: "Submit Dubbing Job"
+  source_operation: openapi/deepdub-managed-dub-openapi-original.json#create_dubbing_job_dubbing_job_post
+- name: get_dubbing_job_dubbing_job__request_id__get
+  description: "Get Dubbing Job Status"
+  source_operation: openapi/deepdub-managed-dub-openapi-original.json#get_dubbing_job_dubbing_job__request_id__get
+- name: update_request_handler_dubbing_job__request_id__put
+  description: "Update Dubbing Job"
+  source_operation: openapi/deepdub-managed-dub-openapi-original.json#update_request_handler_dubbing_job__request_id__put
+- name: cancel_request_handler_dubbing_job__request_id__delete
+  description: "Cancel Dubbing Job"
+  source_operation: openapi/deepdub-managed-dub-openapi-original.json#cancel_request_handler_dubbing_job__request_id__delete
+- name: create_redubbing_job_handler_dubbing_job__request_id__patch
+  description: "Submit Redubbing Feedback"
+  source_operation: openapi/deepdub-managed-dub-openapi-original.json#create_redubbing_job_handler_dubbing_job__request_id__patch
+- name: list_dubbing_jobs_dubbing_jobs_get
+  description: "List Dubbing Jobs"
+  source_operation: openapi/deepdub-managed-dub-openapi-original.json#list_dubbing_jobs_dubbing_jobs_get
+- name: add_source_handler_dubbing_job__request_id__sources_post
+  description: "Add Additional Source"
+  source_operation: openapi/deepdub-managed-dub-openapi-original.json#add_source_handler_dubbing_job__request_id__sources_post

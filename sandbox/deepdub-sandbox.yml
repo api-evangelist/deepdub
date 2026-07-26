@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.deepdub.ai/voice-presets
+note: Deepdub publishes a shared free-trial API key and curated voice-preset IDs for testing. Values captured verbatim from the docs; never invent test values.
+test_vs_live:
+  key_prefix: "dd-"
+  key_format: "dd-{random_characters}{checksum} (last 8 chars are a validation checksum)"
+  free_trial_key: "dd-00000000000000000000000065c9cbfe"
+  free_trial_note: IP rate-limited; no sign-up required. EU region is NOT available with the free-trial key.
+recommended_model: "dd-etts-3.0"
+voice_presets:
+- label: "Promo / Commercials (M, Thomas Young)"
+  voice_prompt_id: "50a537cf-1ec8-4714-b07e-c589ab76be4b"
+  locale: en-US
+- label: "Call Center Agent Empathetic (M, Guillermo Castro)"
+  voice_prompt_id: "060acdd4-cd61-4b78-a513-90e00afa8835"
+  locale: en-US
+- label: "Sales Agent Energetic (F, Heather Long)"
+  voice_prompt_id: "02215cf5-04af-46f3-a061-48a4c81989bf"
+  locale: en-US
+- label: "Storyteller (M, Mario Lopez)"
+  voice_prompt_id: "bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773"
+  locale: en-US
+- label: "Meditation Guide (F, Kathy Evans)"
+  voice_prompt_id: "c0866c1c-0731-45b2-9c90-21be974513b4"
+  locale: en-US
+- label: "Sales Agent Neutral (F, Raquel Alvarez, Hebrew)"
+  voice_prompt_id: "fb158c16-af06-4a90-abbe-3599c942dd66_prompt-V2-Spontaneous-Speech"
+  locale: he-IL

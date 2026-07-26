@@ -1,0 +1,22 @@
+generated: '2026-07-18'
+method: generated
+note: Two generated skills grounded in real operationIds, plus provider-published agent files saved verbatim.
+skills:
+- file: deepdub-generate-tts.md
+  name: Generate expressive TTS audio with Deepdub
+  api: openapi/deepdub-api-openapi-original.json
+  operations: [generateTTS, getVoicePrompts, createVoicePrompt]
+  method: generated
+- file: deepdub-submit-dubbing-job.md
+  name: Submit and track a Deepdub dubbing job
+  api: openapi/deepdub-managed-dub-openapi-original.json
+  operations: [create_dubbing_job_dubbing_job_post, get_dubbing_job_dubbing_job__request_id__get, list_dubbing_jobs_dubbing_jobs_get, create_redubbing_job_handler_dubbing_job__request_id__patch]
+  method: generated
+- file: deepdub-claude-code-AGENTS.md
+  name: Deepdub Claude Code AGENTS.md (provider-published)
+  source: https://docs.deepdub.ai/claude-code
+  method: searched
+- file: deepdub-cursor-skill.md
+  name: Deepdub Cursor Skill (provider-published)
+  source: https://docs.deepdub.ai/cursor-skill
+  method: searched

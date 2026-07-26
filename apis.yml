@@ -1,7 +1,15 @@
 aid: deepdub
-name: deepdub
-description: deepdub is a company surfaced as a portfolio company of insight-partners and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: Deepdub
+description: >-
+  Deepdub is an AI dubbing, voice-cloning, and text-to-speech company that turns content into
+  natural, emotionally adaptive speech across 100+ languages. Its platform powers media dubbing
+  for studios such as Paramount, Netflix, and Prime Video, real-time AI voice agents (~125ms
+  latency), video localization, live broadcast, and voice cloning. Deepdub exposes a developer
+  platform: a REST Text-to-Speech API (restapi.deepdub.ai) covering TTS generation, a voice bank,
+  gender detection, usage, and issue tracking; a Managed Dubbing API (dubbing.deepdub.app) for
+  end-to-end video dubbing jobs; and a WebSocket streaming API for real-time audio. Authentication
+  is via an x-api-key header, with Python and Node.js SDKs, published OpenAPI specs, and agent
+  files (AGENTS.md, Cursor skill). Deepdub is backed by Insight Partners.
 url: https://raw.githubusercontent.com/api-evangelist/deepdub/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,17 +17,216 @@ x-backed-by:
 - insight-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://deepdub.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DGetting%2BStarted%26title%3DIntroduction%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Fdeepdub%252FYsh6dRbXX3wLTl5X%252Flogo%252Flogo128.png&w=1200&q=100
 tags:
 - Company
-apis: []
+- Voice
+- Text to Speech
+- Dubbing
+- Localization
+- Speech Synthesis
+- Voice Cloning
+- Media
+- Artificial Intelligence
+- Audio
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: deepdub:deepdub-dubbing-api
+  name: Deepdub Dubbing API
+  description: The Dubbing API from Deepdub — 4 operation(s) for dubbing.
+  humanURL: https://docs.deepdub.ai/
+  baseURL: https://restapi.deepdub.ai/api/v1
+  tags:
+  - Dubbing
+  properties:
+  - type: OpenAPI
+    url: openapi/deepdub-dubbing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.deepdub.ai/
+  - type: APIReference
+    url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
+  - type: Documentation
+    url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
+- aid: deepdub:deepdub-gender-detection-api
+  name: Deepdub Gender Detection API
+  description: The Gender Detection API from Deepdub — 2 operation(s) for gender detection.
+  humanURL: https://docs.deepdub.ai/
+  baseURL: https://restapi.deepdub.ai/api/v1
+  tags:
+  - Gender Detection
+  properties:
+  - type: OpenAPI
+    url: openapi/deepdub-gender-detection-api-openapi.yml
+  - type: Documentation
+    url: https://docs.deepdub.ai/
+  - type: APIReference
+    url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
+  - type: Documentation
+    url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
+- aid: deepdub:deepdub-infrastructure-api
+  name: Deepdub Infrastructure API
+  description: The Infrastructure API from Deepdub — 2 operation(s) for infrastructure.
+  humanURL: https://docs.deepdub.ai/
+  baseURL: https://restapi.deepdub.ai/api/v1
+  tags:
+  - Infrastructure
+  properties:
+  - type: OpenAPI
+    url: openapi/deepdub-infrastructure-api-openapi.yml
+  - type: Documentation
+    url: https://docs.deepdub.ai/
+  - type: APIReference
+    url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
+  - type: Documentation
+    url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
+- aid: deepdub:deepdub-issues-api
+  name: Deepdub Issues API
+  description: The Issues API from Deepdub — 2 operation(s) for issues.
+  humanURL: https://docs.deepdub.ai/
+  baseURL: https://restapi.deepdub.ai/api/v1
+  tags:
+  - Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/deepdub-issues-api-openapi.yml
+  - type: Documentation
+    url: https://docs.deepdub.ai/
+  - type: APIReference
+    url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
+  - type: Documentation
+    url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
+- aid: deepdub:deepdub-tts-api
+  name: Deepdub TTS API
+  description: The TTS API from Deepdub — 1 operation(s) for tts.
+  humanURL: https://docs.deepdub.ai/
+  baseURL: https://restapi.deepdub.ai/api/v1
+  tags:
+  - TTS
+  properties:
+  - type: OpenAPI
+    url: openapi/deepdub-tts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.deepdub.ai/
+  - type: APIReference
+    url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
+  - type: Documentation
+    url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
+- aid: deepdub:deepdub-usage-api
+  name: Deepdub Usage API
+  description: The Usage API from Deepdub — 2 operation(s) for usage.
+  humanURL: https://docs.deepdub.ai/
+  baseURL: https://restapi.deepdub.ai/api/v1
+  tags:
+  - Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/deepdub-usage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.deepdub.ai/
+  - type: APIReference
+    url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
+  - type: Documentation
+    url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
+- aid: deepdub:deepdub-voice-api
+  name: Deepdub Voice API
+  description: The Voice API from Deepdub — 2 operation(s) for voice.
+  humanURL: https://docs.deepdub.ai/
+  baseURL: https://restapi.deepdub.ai/api/v1
+  tags:
+  - Voice
+  properties:
+  - type: OpenAPI
+    url: openapi/deepdub-voice-api-openapi.yml
+  - type: Documentation
+    url: https://docs.deepdub.ai/
+  - type: APIReference
+    url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
+  - type: Documentation
+    url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
 common:
 - type: Website
   url: https://deepdub.ai/
+- type: DeveloperPortal
+  url: https://docs.deepdub.ai/
+- type: Documentation
+  url: https://docs.deepdub.ai/introduction
+- type: APIReference
+  url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
+- type: GettingStarted
+  url: https://docs.deepdub.ai/quickstart
+- type: Authentication
+  url: authentication/deepdub-authentication.yml
+- type: Blog
+  url: https://deepdub.ai/blog
+- type: Support
+  url: mailto:support@deepdub.ai
+- type: GitHubOrganization
+  url: https://github.com/deepdub-ai
+- type: SignUp
+  url: https://app.deepdub.ai/signup
+- type: Login
+  url: https://app.deepdub.ai/
+- type: Pricing
+  url: https://deepdub.ai/demo
+- type: TermsOfService
+  url: https://deepdub.ai/legal/terms-of-use
+- type: PrivacyPolicy
+  url: https://deepdub.ai/legal/privacy
+- type: Packages
+  url: packages/deepdub-packages.yml
+- type: SDKs
+  url: packages/deepdub-packages.yml
+- type: MCPServer
+  url: mcp/deepdub-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/deepdub-agentic-access.yml
+- type: LLMsTxt
+  url: llms/deepdub-llms.txt
+- type: Sandbox
+  url: sandbox/deepdub-sandbox.yml
+- type: RateLimits
+  url: rate-limits/deepdub-rate-limits.yml
+- type: Conventions
+  url: conventions/deepdub-conventions.yml
+- type: ErrorCatalog
+  url: errors/deepdub-error-codes.yml
+- type: DataModel
+  url: data-model/deepdub-data-model.yml
+- type: Conformance
+  url: conformance/deepdub-conformance.yml
+- type: Lifecycle
+  url: lifecycle/deepdub-lifecycle.yml
+- type: DomainSecurity
+  url: security/deepdub-domain-security.yml
+- type: WellKnown
+  url: well-known/deepdub-well-known.yml
+- type: Overlay
+  url: overlays/deepdub-api-overlay.yaml
+- type: Overlay
+  url: overlays/deepdub-managed-dub-overlay.yaml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

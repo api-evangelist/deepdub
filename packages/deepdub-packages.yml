@@ -1,0 +1,21 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.deepdub.ai/sdk
+packages:
+- language: python
+  registry: pypi
+  name: deepdub
+  version: 0.1.28
+  url: https://pypi.org/project/deepdub/
+  install: pip install deepdub
+  source_code: https://github.com/deepdub-ai/deepdub
+  client_class: DeepdubClient
+  official: true
+- language: javascript
+  registry: npm
+  name: "@deepdub/node"
+  version: 3.0.2
+  url: https://www.npmjs.com/package/@deepdub/node
+  install: npm install @deepdub/node
+  source_code: https://github.com/deepdubcorp/deepdub-sdk
+  official: true

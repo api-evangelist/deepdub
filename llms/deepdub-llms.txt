@@ -1,0 +1,44 @@
+# Deepdub Documentation
+
+## Docs
+
+- [Add Additional Source](https://docs.deepdub.ai/api-reference/add-additional-source.md): Attach an additional source asset (subtitles, audio hints, etc.) to an existing job. The new source is ingested asynchronously.
+- [Cancel Dubbing Job](https://docs.deepdub.ai/api-reference/cancel-dubbing-job.md): Mark a job as cancelled. Cancellation is permanent — a cancelled job cannot be revived; submit a new job instead.
+- [Classify speaker gender](https://docs.deepdub.ai/api-reference/gender-detection/classify-speaker-gender.md): Classify the gender of the speaker in an audio file. Accepts either an audio URL (S3 or HTTP) or base64-encoded audio data. Supports WAV, MP3, FLAC, OGG, and other common audio formats.
+- [Classify speaker gender (file upload)](https://docs.deepdub.ai/api-reference/gender-detection/classify-speaker-gender-file-upload.md): Classify the gender of the speaker from an uploaded audio file. Accepts audio files in WAV, MP3, FLAC, OGG, and other common formats.
+- [Get Dubbing Job Status](https://docs.deepdub.ai/api-reference/get-dubbing-job-status.md): Return the current status, progress trace, export path, and additional products for a single dubbing job.
+- [Get connections for a model](https://docs.deepdub.ai/api-reference/infrastructure/get-connections-for-a-model.md): Get the current number of machines and connections available for a specific model's autoscaling group.
+- [Get connections for multiple models](https://docs.deepdub.ai/api-reference/infrastructure/get-connections-for-multiple-models.md): Get autoscaling group information for multiple models at once.
+- [Update model autoscaling group](https://docs.deepdub.ai/api-reference/infrastructure/update-model-autoscaling-group.md): Update the min, max, and desired capacity of the autoscaling group for a specific model.
+- [Create a new issue](https://docs.deepdub.ai/api-reference/issues/create-issue.md): Report a problem with a TTS generation by creating a new issue. Issues are tracked internally by the Deepdub team and used to improve voice quality. The `problemAudioFile` field can optionally include base64-encoded audio attached to the issue, and `problemSeconds` indicates the timestamp in the aud…
+- [Delete an issue](https://docs.deepdub.ai/api-reference/issues/delete-issue.md): Archive an issue. Archived issues are no longer visible via `GET /issues/{id}`.
+- [Get an issue by ID](https://docs.deepdub.ai/api-reference/issues/get-issue.md): Retrieve an issue by its ID, including its current state (e.g., open, in progress, resolved).
+- [Update an issue](https://docs.deepdub.ai/api-reference/issues/update-issue.md): Update an existing issue. All fields are optional — only fields included in the body are updated.
+- [List Dubbing Jobs](https://docs.deepdub.ai/api-reference/list-dubbing-jobs.md): Return a paginated list of dubbing jobs belonging to the authenticated customer. Cancelled jobs are excluded.
+- [Submit Dubbing Job](https://docs.deepdub.ai/api-reference/submit-dubbing-job.md): Create a new dubbing job. The source video is validated, locales are resolved, and the job is queued for processing. Returns a requestId used to track the job.
+- [Submit Redubbing Feedback](https://docs.deepdub.ai/api-reference/submit-redubbing-feedback.md): Submit quality feedback and issue reports for a completed dubbing job, triggering a resynthesis workflow.
+- [Generate and stream TTS audio](https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio.md): Generate and stream TTS audio based on the provided text. Returns an audio stream in the specified format (default MP3). Supported formats: `mp3`, `opus`, `mulaw`. For `wav` or `s16le` output, use the WebSocket API.
+- [Update Dubbing Job](https://docs.deepdub.ai/api-reference/update-dubbing-job.md): Update mutable fields of an existing job. Only the fields included in the request body are changed.
+- [Get daily concurrent usage](https://docs.deepdub.ai/api-reference/usage/get-daily-concurrent-usage.md): Get daily concurrent-capacity usage for the authenticated customer. Returns usage rows from the billing system, broken down by date, model, and region.
+- [Get usage aggregated by model](https://docs.deepdub.ai/api-reference/usage/get-usage-aggregated-by-model.md): Get concurrent-capacity usage rolled up per model and region over a date range. Returns aggregated totals instead of daily rows.
+- [Delete a voice prompt](https://docs.deepdub.ai/api-reference/voice/delete-a-voice-prompt.md): Permanently delete a voice prompt by its unique identifier.
+- [Get a voice prompt by ID](https://docs.deepdub.ai/api-reference/voice/get-a-voice-prompt-by-id.md): Retrieve a specific voice prompt by its unique identifier.
+- [Get voice prompts](https://docs.deepdub.ai/api-reference/voice/get-voice-prompts.md): Retrieve all private voice prompts associated with the authenticated customer's account. Results can be limited using the `limit` query parameter.
+- [Update a voice prompt](https://docs.deepdub.ai/api-reference/voice/update-a-voice-prompt.md): Update metadata for an existing voice prompt. Only non-empty fields are updated — omit fields you don't want to change.
+- [Upload a voice sample](https://docs.deepdub.ai/api-reference/voice/upload-a-voice-sample.md): Upload a voice sample to create a new voice prompt in the voice bank. The audio data must be base64-encoded. Maximum file size is 20 MB.
+- [WebSocket Streaming API](https://docs.deepdub.ai/api-reference/websocket/overview.md): Stream TTS audio in real-time over WebSocket connections
+- [Authentication](https://docs.deepdub.ai/authentication.md): Authenticate your requests to the Deepdub API
+- [Claude Code (AGENTS.md)](https://docs.deepdub.ai/claude-code.md): Integrate Deepdub API knowledge into Claude Code's AI agent
+- [Cursor Skill](https://docs.deepdub.ai/cursor-skill.md): Integrate Deepdub API knowledge into Cursor IDE's AI agent
+- [Introduction](https://docs.deepdub.ai/introduction.md): Generate expressive, high-quality speech with Deepdub's Text-to-Speech API
+- [Subtitle-Only Flow](https://docs.deepdub.ai/managed-dub/subtitle-only-flow.md): Generate subtitles and transcripts from a source video without producing a dubbed audio track
+- [Quickstart](https://docs.deepdub.ai/quickstart.md): Generate your first TTS audio in under 5 minutes
+- [Python SDK](https://docs.deepdub.ai/sdk.md): Install and use the Deepdub Python SDK for text-to-speech, voice management, and real-time streaming
+- [JavaScript SDK](https://docs.deepdub.ai/sdk-javascript.md): Install and use the Deepdub Node.js SDK for text-to-speech generation with streaming support
+- [Voice Presets](https://docs.deepdub.ai/voice-presets.md): Ready-to-use voice presets for trying Deepdub's TTS API
+
+## OpenAPI Specs
+
+- [managed-dub.openapi](https://docs.deepdub.ai/managed-dub.openapi.json)
+- [openapi3](https://docs.deepdub.ai/openapi3.json)
+- [openapi](https://docs.deepdub.ai/api-reference/openapi.json)

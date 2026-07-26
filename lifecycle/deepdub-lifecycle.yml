@@ -1,0 +1,17 @@
+generated: '2026-07-18'
+method: searched
+source:
+- https://docs.deepdub.ai/authentication
+- openapi/deepdub-api-openapi-original.json
+note: Versioning and lifecycle posture. No public status page, deprecation policy, or SLA page was found (absence recorded). No operations are marked deprecated in the OpenAPI.
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.deepdub.ai/authentication
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

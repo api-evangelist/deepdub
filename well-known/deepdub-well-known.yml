@@ -1,0 +1,21 @@
+generated: '2026-07-18'
+method: searched
+note: Probed the discovery surface for the primary API + web hosts. No /.well-known/ documents are published (absence is valid, recorded data).
+hosts:
+- host: https://restapi.deepdub.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://dubbing.deepdub.app
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+- host: https://deepdub.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+- host: https://docs.deepdub.ai
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
