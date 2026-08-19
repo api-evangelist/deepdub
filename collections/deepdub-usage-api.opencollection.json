@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Deepdub Dubbing Usage API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get daily concurrent usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/usage/concurrent",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "from",
+                "value": "2026-05-01",
+                "type": "query",
+                "description": "Start date (inclusive)"
+              },
+              {
+                "name": "to",
+                "value": "2026-05-31",
+                "type": "query",
+                "description": "End date (inclusive). Must be on or after `from`. Maximum range is 366 days."
+              },
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by model ID"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Filter by region"
+              }
+            ]
+          },
+          "docs": "Get daily concurrent-capacity usage for the authenticated customer. Returns usage rows from the billing system, broken down by date, model, and region."
+        },
+        {
+          "info": {
+            "name": "Get usage aggregated by model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/usage/concurrent/by-model",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "from",
+                "value": "2026-05-01",
+                "type": "query",
+                "description": "Start date (inclusive)"
+              },
+              {
+                "name": "to",
+                "value": "2026-05-31",
+                "type": "query",
+                "description": "End date (inclusive). Must be on or after `from`. Maximum range is 366 days."
+              },
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by model ID"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "Filter by region"
+              }
+            ]
+          },
+          "docs": "Get concurrent-capacity usage rolled up per model and region over a date range. Returns aggregated totals instead of daily rows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

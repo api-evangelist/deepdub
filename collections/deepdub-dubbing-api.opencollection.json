@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Deepdub Dubbing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dubbing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit Dubbing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://restapi.deepdub.ai/api/v1/dubbing/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new dubbing job. The source video is validated, locales are resolved, and the job is queued for processing. Returns a requestId used to track the job."
+        },
+        {
+          "info": {
+            "name": "Get Dubbing Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/dubbing/job/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return the current status, progress trace, export path, and additional products for a single dubbing job."
+        },
+        {
+          "info": {
+            "name": "Update Dubbing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://restapi.deepdub.ai/api/v1/dubbing/job/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update mutable fields of an existing job. Only the fields included in the request body are changed."
+        },
+        {
+          "info": {
+            "name": "Submit Redubbing Feedback",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://restapi.deepdub.ai/api/v1/dubbing/job/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit quality feedback and issue reports for a completed dubbing job, triggering a resynthesis workflow."
+        },
+        {
+          "info": {
+            "name": "Cancel Dubbing Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://restapi.deepdub.ai/api/v1/dubbing/job/:request_id",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mark a job as cancelled. Cancellation is permanent — a cancelled job cannot be revived; submit a new job instead."
+        },
+        {
+          "info": {
+            "name": "List Dubbing Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/dubbing/jobs",
+            "params": [
+              {
+                "name": "next_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return a paginated list of dubbing jobs belonging to the authenticated customer. Cancelled jobs are excluded."
+        },
+        {
+          "info": {
+            "name": "Add Additional Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://restapi.deepdub.ai/api/v1/dubbing/job/:request_id/sources",
+            "params": [
+              {
+                "name": "request_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Attach an additional source asset (subtitles, audio hints, etc.) to an existing job. The new source is ingested asynchronously."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Deepdub Dubbing Infrastructure API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Infrastructure",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get connections for multiple models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/concurrent_connections/batch",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "model_ids",
+                "value": "dd-etts-3.0,dd-etts-2.5",
+                "type": "query",
+                "description": "Comma-separated list of model IDs"
+              }
+            ]
+          },
+          "docs": "Get autoscaling group information for multiple models at once."
+        },
+        {
+          "info": {
+            "name": "Get connections for a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/concurrent_connections/:model_id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "model_id",
+                "value": "dd-etts-3.0",
+                "type": "path",
+                "description": "Model ID"
+              }
+            ]
+          },
+          "docs": "Get the current number of machines and connections available for a specific model's autoscaling group."
+        },
+        {
+          "info": {
+            "name": "Update model autoscaling group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://restapi.deepdub.ai/api/v1/concurrent_connections/:model_id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "model_id",
+                "value": "dd-etts-3.0",
+                "type": "path",
+                "description": "Model ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the min, max, and desired capacity of the autoscaling group for a specific model."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

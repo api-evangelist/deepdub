@@ -1,0 +1,441 @@
+{
+  "item": [
+    {
+      "id": "4a95625b-7061-45ca-8c86-aec916904cc7",
+      "name": "TTS",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "86f772cd-574a-42b7-b7c8-ea12164b25b7",
+          "name": "Generate and stream TTS audio",
+          "request": {
+            "name": "Generate and stream TTS audio",
+            "description": {
+              "content": "Generate and stream TTS audio based on the provided text. Returns an audio stream in the specified format (default MP3). Supported formats: `mp3`, `opus`, `mulaw`. For `wav` or `s16le` output, use the WebSocket API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API Key",
+                "key": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locale\": \"<string>\",\n  \"model\": \"dd-etts-3.0\",\n  \"targetText\": \"<string>\",\n  \"voicePromptId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "25f0e84b-dfeb-4a8a-af73-0458d59b016e",
+              "name": "Audio stream in the requested format (MP3, Opus, or mulaw depending on `format` parameter). The response body is raw audio bytes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"dd-etts-3.0\",\n  \"targetText\": \"Hello world, welcome to Deepdub.\",\n  \"locale\": \"en-US\",\n  \"voicePromptId\": \"bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a881f20-29fa-41c9-8838-15f8a957aea4",
+              "name": "Bad request — invalid or missing parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"dd-etts-3.0\",\n  \"targetText\": \"Hello world, welcome to Deepdub.\",\n  \"locale\": \"en-US\",\n  \"voicePromptId\": \"bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request: missing required field 'targetText'\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90e3fd06-237e-4858-a513-0760da79b5db",
+              "name": "Unauthorized — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"dd-etts-3.0\",\n  \"targetText\": \"Hello world, welcome to Deepdub.\",\n  \"locale\": \"en-US\",\n  \"voicePromptId\": \"bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Unauthorized: invalid or missing API key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e6958ad-8618-4f18-a5cc-dbcc128b346c",
+              "name": "Insufficient credits — your account has run out of TTS credits",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"dd-etts-3.0\",\n  \"targetText\": \"Hello world, welcome to Deepdub.\",\n  \"locale\": \"en-US\",\n  \"voicePromptId\": \"bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"InsufficientCredits: your account has no remaining credits\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f0e41fe-a4cc-4a4a-a6f2-ec93802f591b",
+              "name": "Rate limit exceeded — too many concurrent requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"dd-etts-3.0\",\n  \"targetText\": \"Hello world, welcome to Deepdub.\",\n  \"locale\": \"en-US\",\n  \"voicePromptId\": \"bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"RateLimit: concurrent request limit exceeded\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "627a0e05-67b4-4ab2-921d-663fe12be247",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"model\": \"dd-etts-3.0\",\n  \"targetText\": \"Hello world, welcome to Deepdub.\",\n  \"locale\": \"en-US\",\n  \"voicePromptId\": \"bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Internal server error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://restapi.deepdub.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "14682bdc-e293-428e-83b3-352ba8a5ed69",
+    "name": "Deepdub Dubbing TTS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.\n\nContact Support:\n Email: support@deepdub.ai",
+      "type": "text/plain"
+    }
+  }
+}

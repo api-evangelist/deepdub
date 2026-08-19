@@ -1,0 +1,1614 @@
+{
+  "item": [
+    {
+      "id": "2e58d091-d93e-42ac-8655-e55e96d9c083",
+      "name": "Voice",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "807a7b15-3e8f-47cc-9d4b-aa76eb38467e",
+          "name": "Get voice prompts",
+          "request": {
+            "name": "Get voice prompts",
+            "description": {
+              "content": "Retrieve all private voice prompts associated with the authenticated customer's account. Results can be limited using the `limit` query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "Maximum number of voice prompts to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API Key",
+                "key": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c16c563d-0d4c-4b22-97ea-93069a7126eb",
+              "name": "List of voice prompts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"voicePrompts\": [\n    {\n      \"id\": \"vp_12345abcde\",\n      \"title\": \"Professional Narrator\",\n      \"name\": \"Professional Female Voice\",\n      \"locale\": \"en-US\",\n      \"text\": \"string\",\n      \"createdAt\": \"2024-05-23T06:11:36.852Z\",\n      \"speakerId\": \"string\",\n      \"gender\": \"FEMALE\",\n      \"speakingStyle\": \"narrative\"\n    },\n    {\n      \"id\": \"vp_12345abcde\",\n      \"title\": \"Professional Narrator\",\n      \"name\": \"Professional Female Voice\",\n      \"locale\": \"en-US\",\n      \"text\": \"string\",\n      \"createdAt\": \"1974-11-24T11:25:22.204Z\",\n      \"speakerId\": \"string\",\n      \"gender\": \"FEMALE\",\n      \"speakingStyle\": \"narrative\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07890177-5281-4c22-b137-f3b7b2872c10",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3303a04e-a1db-482e-9668-25bd7f5bef79",
+              "name": "Unauthorized — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Unauthorized: invalid or missing API key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea2b4cda-4403-47f4-a21d-a1963d9990b7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Internal server error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bc243c7-691b-4302-9844-38759a5bff69",
+          "name": "Upload a voice sample",
+          "request": {
+            "name": "Upload a voice sample",
+            "description": {
+              "content": "Upload a voice sample to create a new voice prompt in the voice bank. The audio data must be base64-encoded. Maximum file size is 20 MB.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API Key",
+                "key": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"<string>\",\n  \"data\": \"<string>\",\n  \"title\": \"<string>\",\n  \"text\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"age\": \"<integer>\",\n  \"speaking_style\": \"<string>\",\n  \"speaker_id\": \"<string>\",\n  \"publish\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8f4e7f1-0938-4686-bc0e-c468fda78ceb",
+              "name": "Voice prompt created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"voice_sample.wav\",\n  \"data\": \"<string>\",\n  \"title\": \"Professional Narrator\",\n  \"text\": \"This is a sample recording for voice cloning.\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35,\n  \"speaking_style\": \"narrative\",\n  \"speaker_id\": \"<string>\",\n  \"publish\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"response\": {\n    \"voice_prompt_id\": \"vp_12345abcde\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "deeae403-0566-42bf-ad22-95326b326edb",
+              "name": "Bad request — invalid audio data, missing fields, or file exceeds 20 MB limit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"voice_sample.wav\",\n  \"data\": \"<string>\",\n  \"title\": \"Professional Narrator\",\n  \"text\": \"This is a sample recording for voice cloning.\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35,\n  \"speaking_style\": \"narrative\",\n  \"speaker_id\": \"<string>\",\n  \"publish\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Audio data exceeds 20 MB limit\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "153fe3f5-7013-4092-b41a-d31be00408ed",
+              "name": "Unauthorized — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"voice_sample.wav\",\n  \"data\": \"<string>\",\n  \"title\": \"Professional Narrator\",\n  \"text\": \"This is a sample recording for voice cloning.\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35,\n  \"speaking_style\": \"narrative\",\n  \"speaker_id\": \"<string>\",\n  \"publish\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Unauthorized: invalid or missing API key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d8617b4-332b-4bc3-a866-8fb7005bcb0d",
+              "name": "Forbidden — voice prompt limit reached for your account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"voice_sample.wav\",\n  \"data\": \"<string>\",\n  \"title\": \"Professional Narrator\",\n  \"text\": \"This is a sample recording for voice cloning.\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35,\n  \"speaking_style\": \"narrative\",\n  \"speaker_id\": \"<string>\",\n  \"publish\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Voice prompt limit reached for your account\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01658d0b-38be-442c-bb52-88b1e98dc64a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"voice_sample.wav\",\n  \"data\": \"<string>\",\n  \"title\": \"Professional Narrator\",\n  \"text\": \"This is a sample recording for voice cloning.\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35,\n  \"speaking_style\": \"narrative\",\n  \"speaker_id\": \"<string>\",\n  \"publish\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Internal server error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad25961d-99b7-460a-a88a-0741e5f9601c",
+          "name": "Update a voice prompt",
+          "request": {
+            "name": "Update a voice prompt",
+            "description": {
+              "content": "Update metadata for an existing voice prompt. Only non-empty fields are updated — omit fields you don't want to change.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API Key",
+                "key": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"locale\": \"<string>\",\n  \"gender\": \"<string>\",\n  \"age\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99f55237-ce4d-4f1a-bc1f-028daed80e80",
+              "name": "Voice prompt updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"vp_12345abcde\",\n  \"name\": \"Professional Female Voice\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"prompt\": {\n    \"id\": \"vp_12345abcde\",\n    \"title\": \"Professional Narrator\",\n    \"name\": \"Professional Female Voice\",\n    \"locale\": \"en-US\",\n    \"text\": \"string\",\n    \"createdAt\": \"1966-01-14T09:28:39.673Z\",\n    \"speakerId\": \"string\",\n    \"gender\": \"FEMALE\",\n    \"speakingStyle\": \"narrative\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55589a37-15b3-4a4e-bacc-fcf318f43642",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"vp_12345abcde\",\n  \"name\": \"Professional Female Voice\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request: voice prompt ID is required\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "752e1a04-3832-4df1-9b85-7fd91ab45454",
+              "name": "Unauthorized — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"vp_12345abcde\",\n  \"name\": \"Professional Female Voice\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Unauthorized: invalid or missing API key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57c543a8-6113-41d9-8b9a-5dd7e82641f1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"vp_12345abcde\",\n  \"name\": \"Professional Female Voice\",\n  \"locale\": \"en-US\",\n  \"gender\": \"FEMALE\",\n  \"age\": 35\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Internal server error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "092bf878-3f23-4e51-bd2e-bf52560f62c8",
+          "name": "Get a voice prompt by ID",
+          "request": {
+            "name": "Get a voice prompt by ID",
+            "description": {
+              "content": "Retrieve a specific voice prompt by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voice",
+                ":prompt_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prompt_id",
+                  "description": "(Required) Voice Prompt ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API Key",
+                "key": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af007904-811b-44f8-928c-c4edcac45477",
+              "name": "Voice prompt details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"prompt\": {\n    \"id\": \"vp_12345abcde\",\n    \"title\": \"Professional Narrator\",\n    \"name\": \"Professional Female Voice\",\n    \"locale\": \"en-US\",\n    \"text\": \"string\",\n    \"createdAt\": \"1966-01-14T09:28:39.673Z\",\n    \"speakerId\": \"string\",\n    \"gender\": \"FEMALE\",\n    \"speakingStyle\": \"narrative\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbe92e45-0178-4f8b-b118-197e81db472a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid voice prompt ID format\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eac68db9-ba3b-4316-b31d-aa9982ec135c",
+              "name": "Unauthorized — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Unauthorized: invalid or missing API key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f2674e8-f31a-4bda-bc07-3e15a5cfd463",
+              "name": "Voice prompt not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Voice prompt not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "342814b0-06c7-4f68-a9ce-898590277245",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Internal server error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72e503c8-a227-43e7-a4f1-b081cb4827dd",
+          "name": "Delete a voice prompt",
+          "request": {
+            "name": "Delete a voice prompt",
+            "description": {
+              "content": "Permanently delete a voice prompt by its unique identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "voice",
+                ":prompt_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prompt_id",
+                  "description": "(Required) Voice Prompt ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API Key",
+                "key": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b3f1209-1dd0-4a34-a6bd-30938b54f4ee",
+              "name": "Voice prompt deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Operation successful\",\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a363849-6e16-4e45-adaa-b26ad901654f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid voice prompt ID\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28bb77a5-5cbc-426c-923f-76d081453eca",
+              "name": "Unauthorized — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Unauthorized: invalid or missing API key\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdea5fc0-f36e-41f3-83fc-21a1cc6f5bdb",
+              "name": "Voice prompt not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Voice prompt not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d12336b-61fe-4dcb-9209-5ed390d349cb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "voice",
+                    ":prompt_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prompt_id",
+                      "description": "(Required) Voice Prompt ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Internal server error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://restapi.deepdub.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6815c5dc-2f64-44bd-ba70-420315bc7aed",
+    "name": "Deepdub Dubbing Voice API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.\n\nContact Support:\n Email: support@deepdub.ai",
+      "type": "text/plain"
+    }
+  }
+}

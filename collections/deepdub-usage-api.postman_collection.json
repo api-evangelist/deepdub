@@ -1,0 +1,724 @@
+{
+  "item": [
+    {
+      "id": "bd3af772-10c6-49ed-ab3e-df758995e92e",
+      "name": "Usage",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "947c81ee-ad47-4d1f-b4a0-0033c0e2f0aa",
+          "name": "Get daily concurrent usage",
+          "request": {
+            "name": "Get daily concurrent usage",
+            "description": {
+              "content": "Get daily concurrent-capacity usage for the authenticated customer. Returns usage rows from the billing system, broken down by date, model, and region.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "usage",
+                "concurrent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "(Required) Start date (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "(Required) End date (inclusive). Must be on or after `from`. Maximum range is 366 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "model_id",
+                  "value": "<string>",
+                  "description": "Filter by model ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Filter by region"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API Key",
+                "key": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e7db1ec-bc0a-4731-8f39-95750ef86325",
+              "name": "Daily usage data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    "concurrent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-05-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-05-31"
+                    },
+                    {
+                      "key": "model_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customerId\": \"string\",\n  \"from\": \"1993-11-14\",\n  \"to\": \"2010-12-24\",\n  \"items\": [\n    {\n      \"date\": \"1970-09-24\",\n      \"customerId\": \"string\",\n      \"modelId\": \"string\",\n      \"region\": \"string\",\n      \"usageSecondsTimesSize\": 5685.798337790488,\n      \"concurrencyHours\": 2410.5212497399407,\n      \"averageSize\": 3387.9216347941842\n    },\n    {\n      \"date\": \"2014-01-05\",\n      \"customerId\": \"string\",\n      \"modelId\": \"string\",\n      \"region\": \"string\",\n      \"usageSecondsTimesSize\": 1654.8036312850588,\n      \"concurrencyHours\": 5906.665612022458,\n      \"averageSize\": 9335.11522819394\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1999d5f-7d83-42da-8f88-14fb796dcbef",
+              "name": "Missing or invalid date range or filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    "concurrent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-05-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-05-31"
+                    },
+                    {
+                      "key": "model_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28d018a7-9a7b-440e-80a6-954bacb55f8b",
+              "name": "Unauthorized — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    "concurrent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-05-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-05-31"
+                    },
+                    {
+                      "key": "model_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8686f8fa-02b0-4945-a070-c444d6905fb2",
+              "name": "Query timed out — try a smaller date range",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    "concurrent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-05-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-05-31"
+                    },
+                    {
+                      "key": "model_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d925ffdc-6f53-4f1b-854c-6ebaef402ef2",
+          "name": "Get usage aggregated by model",
+          "request": {
+            "name": "Get usage aggregated by model",
+            "description": {
+              "content": "Get concurrent-capacity usage rolled up per model and region over a date range. Returns aggregated totals instead of daily rows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "usage",
+                "concurrent",
+                "by-model"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "(Required) Start date (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "(Required) End date (inclusive). Must be on or after `from`. Maximum range is 366 days."
+                },
+                {
+                  "disabled": false,
+                  "key": "model_id",
+                  "value": "<string>",
+                  "description": "Filter by model ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "Filter by region"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API Key",
+                "key": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a0faebc-1a7d-40d0-b8a7-88c7e46c7904",
+              "name": "Aggregated usage data by model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    "concurrent",
+                    "by-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-05-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-05-31"
+                    },
+                    {
+                      "key": "model_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customerId\": \"string\",\n  \"from\": \"2013-07-31\",\n  \"to\": \"1982-07-20\",\n  \"items\": [\n    {\n      \"modelId\": \"string\",\n      \"region\": \"string\",\n      \"totalUsageSecondsTimesSize\": 8897.253233874093,\n      \"totalConcurrencyHours\": 4705.9108919176115,\n      \"averageInstancesOverRange\": 4230.049298680402,\n      \"daysWithUsage\": 4967\n    },\n    {\n      \"modelId\": \"string\",\n      \"region\": \"string\",\n      \"totalUsageSecondsTimesSize\": 3791.4876954879737,\n      \"totalConcurrencyHours\": 9424.726878151367,\n      \"averageInstancesOverRange\": 4259.560538486189,\n      \"daysWithUsage\": 1270\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b4e4445-1306-4911-b768-727df3df30b1",
+              "name": "Missing or invalid date range or filters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    "concurrent",
+                    "by-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-05-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-05-31"
+                    },
+                    {
+                      "key": "model_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3be3a3c6-15dd-4afb-97d2-0022120c6f73",
+              "name": "Unauthorized — invalid or missing API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    "concurrent",
+                    "by-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-05-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-05-31"
+                    },
+                    {
+                      "key": "model_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8634f959-1b70-460a-990d-5a0109e062a0",
+              "name": "Query timed out — try a smaller date range",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    "concurrent",
+                    "by-model"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-05-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-05-31"
+                    },
+                    {
+                      "key": "model_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API Key",
+                    "key": "x-api-key",
+                    "value": "dd-00000000000000000000000065c9cbfe"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request parameters\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://restapi.deepdub.ai/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5eff6f1-a53a-447b-bb18-77718d2376d4",
+    "name": "Deepdub Dubbing Usage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.\n\nContact Support:\n Email: support@deepdub.ai",
+      "type": "text/plain"
+    }
+  }
+}

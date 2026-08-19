@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Deepdub Dubbing Issues API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://restapi.deepdub.ai/api/v1/issues",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Report a problem with a TTS generation by creating a new issue. Issues are tracked internally by the Deepdub team and used to improve voice quality. The `problemAudioFile` field can optionally include base64-encoded audio attached to the issue, and `problemSeconds` indicates the timestamp in the audio where the problem appears."
+        },
+        {
+          "info": {
+            "name": "Get an issue by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/issues/:id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID returned by `POST /issues`"
+              }
+            ]
+          },
+          "docs": "Retrieve an issue by its ID, including its current state (e.g., open, in progress, resolved)."
+        },
+        {
+          "info": {
+            "name": "Update an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://restapi.deepdub.ai/api/v1/issues/:id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing issue. All fields are optional — only fields included in the body are updated."
+        },
+        {
+          "info": {
+            "name": "Delete an issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://restapi.deepdub.ai/api/v1/issues/:id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID"
+              }
+            ]
+          },
+          "docs": "Archive an issue. Archived issues are no longer visible via `GET /issues/{id}`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Deepdub Dubbing TTS API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TTS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate and stream TTS audio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://restapi.deepdub.ai/api/v1/tts",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate and stream TTS audio based on the provided text. Returns an audio stream in the specified format (default MP3). Supported formats: `mp3`, `opus`, `mulaw`. For `wav` or `s16le` output, use the WebSocket API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

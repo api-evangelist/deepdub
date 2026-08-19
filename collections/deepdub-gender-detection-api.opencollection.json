@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Deepdub Dubbing Gender Detection API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gender Detection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Classify speaker gender",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://restapi.deepdub.ai/api/v1/gender-detection/classify",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Classify the gender of the speaker in an audio file. Accepts either an audio URL (S3 or HTTP) or base64-encoded audio data. Supports WAV, MP3, FLAC, OGG, and other common audio formats."
+        },
+        {
+          "info": {
+            "name": "Classify speaker gender (file upload)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://restapi.deepdub.ai/api/v1/gender-detection/classify/upload",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Classify the gender of the speaker from an uploaded audio file. Accepts audio files in WAV, MP3, FLAC, OGG, and other common formats."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Deepdub Dubbing Voice API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Voice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get voice prompts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/voice",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of voice prompts to return"
+              }
+            ]
+          },
+          "docs": "Retrieve all private voice prompts associated with the authenticated customer's account. Results can be limited using the `limit` query parameter."
+        },
+        {
+          "info": {
+            "name": "Upload a voice sample",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://restapi.deepdub.ai/api/v1/voice",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload a voice sample to create a new voice prompt in the voice bank. The audio data must be base64-encoded. Maximum file size is 20 MB."
+        },
+        {
+          "info": {
+            "name": "Update a voice prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://restapi.deepdub.ai/api/v1/voice",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata for an existing voice prompt. Only non-empty fields are updated — omit fields you don't want to change."
+        },
+        {
+          "info": {
+            "name": "Get a voice prompt by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://restapi.deepdub.ai/api/v1/voice/:prompt_id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "Voice Prompt ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific voice prompt by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a voice prompt",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://restapi.deepdub.ai/api/v1/voice/:prompt_id",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": "dd-00000000000000000000000065c9cbfe"
+              }
+            ],
+            "params": [
+              {
+                "name": "prompt_id",
+                "value": "",
+                "type": "path",
+                "description": "Voice Prompt ID"
+              }
+            ]
+          },
+          "docs": "Permanently delete a voice prompt by its unique identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
