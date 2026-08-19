@@ -29,7 +29,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-18'
 image: https://deepdub.mintlify.app/mintlify-assets/_next/image?url=%2F_mintlify%2Fapi%2Fog%3Fdivision%3DGetting%2BStarted%26title%3DIntroduction%26logoLight%3Dhttps%253A%252F%252Fmintcdn.com%252Fdeepdub%252FYsh6dRbXX3wLTl5X%252Flogo%252Flogo128.png&w=1200&q=100
