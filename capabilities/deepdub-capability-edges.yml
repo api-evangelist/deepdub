@@ -1,0 +1,26 @@
+slug: deepdub
+provider: Deepdub
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Dubbing
+  spec_file: deepdub-dubbing-api-openapi.yml
+  capability_id: BC-3700.60
+  capability_id_l1: BC-3700
+  capability_name: Localisation & Versioning Management
+  confidence: 0.9
+  evidence: POST /dubbing/job  Submit Dubbing Job; PATCH ... Submit Redubbing Feedback; schemas MixTypeEnum,
+    DubbingSegment, ManagedDubProgressStatusEnum
+  reason: Operations create, track, update and iterate dubbing jobs over source media across languages
+    — precisely localisation and versioning of audiovisual content. Vendor context confirms media dubbing
+    for studios.

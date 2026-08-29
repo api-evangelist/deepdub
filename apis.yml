@@ -186,6 +186,9 @@ apis:
   - type: Documentation
     url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
 common:
+- type: CapabilityMap
+  url: capabilities/deepdub-capability-edges.yml
+  name: Deepdub Business Capability Map
 - type: Website
   url: https://deepdub.ai/
 - type: DeveloperPortal
