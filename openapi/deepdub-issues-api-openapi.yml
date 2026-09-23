@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Deepdub Dubbing Issues API
+  title: Deepdub Issues API
   description: Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.
   contact:
     email: support@deepdub.ai
@@ -250,10 +250,23 @@ paths:
                 message: Failed to delete issue
 components:
   schemas:
-    model.UpdateIssueRequest:
-      description: Payload for updating an existing issue. All fields are optional.
+    model.IssueResponse:
+      description: Issue details
       type: object
       properties:
+        id:
+          type: string
+          example: iss_12345abcde
+        state:
+          description: Current state of the issue (e.g., open, in progress, resolved)
+          type: string
+          example: open
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
         generationId:
           type: string
         generatedText:
@@ -263,9 +276,6 @@ components:
         voicePromptId:
           type: string
         additionalComments:
-          type: string
-        problemAudioFile:
-          description: Optional base64-encoded audio clip to attach to the issue
           type: string
         problemSeconds:
           type: number
@@ -305,23 +315,17 @@ components:
           description: Seconds in the audio where the problem appears
           type: number
           example: 2.5
-    model.IssueResponse:
-      description: Issue details
+    model.IssueMessageResponse:
+      description: Simple message response
       type: object
       properties:
-        id:
+        message:
           type: string
-          example: iss_12345abcde
-        state:
-          description: Current state of the issue (e.g., open, in progress, resolved)
-          type: string
-          example: open
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
+          example: Issue deleted
+    model.UpdateIssueRequest:
+      description: Payload for updating an existing issue. All fields are optional.
+      type: object
+      properties:
         generationId:
           type: string
         generatedText:
@@ -332,6 +336,9 @@ components:
           type: string
         additionalComments:
           type: string
+        problemAudioFile:
+          description: Optional base64-encoded audio clip to attach to the issue
+          type: string
         problemSeconds:
           type: number
     model.IssueErrorResponse:
@@ -341,13 +348,6 @@ components:
         message:
           type: string
           example: Issue not found
-    model.IssueMessageResponse:
-      description: Simple message response
-      type: object
-      properties:
-        message:
-          type: string
-          example: Issue deleted
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

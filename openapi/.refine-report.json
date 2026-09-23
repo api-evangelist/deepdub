@@ -1,26 +1,48 @@
 {
   "provider": "deepdub",
   "sources": [
-    "deepdub-dubbing-api-openapi.yml",
-    "deepdub-gender-detection-api-openapi.yml",
-    "deepdub-infrastructure-api-openapi.yml",
-    "deepdub-issues-api-openapi.yml",
-    "deepdub-tts-api-openapi.yml",
-    "deepdub-usage-api-openapi.yml",
-    "deepdub-voice-api-openapi.yml"
+    "_original/deepdub-api-openapi-original.json",
+    "_original/deepdub-managed-dub-openapi-original.json"
   ],
   "outputs": [
-    "deepdub-dubbing-api-openapi.yml",
     "deepdub-gender-detection-api-openapi.yml",
     "deepdub-infrastructure-api-openapi.yml",
     "deepdub-issues-api-openapi.yml",
     "deepdub-tts-api-openapi.yml",
     "deepdub-usage-api-openapi.yml",
-    "deepdub-voice-api-openapi.yml"
+    "deepdub-voice-api-openapi.yml",
+    "deepdub-dubbing-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "deepdub-api-openapi-original.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "deepdub-api-openapi-original.json: declared missing tag: Gender Detection",
+    "deepdub-api-openapi-original.json: declared missing tag: Infrastructure",
+    "deepdub-api-openapi-original.json: declared missing tag: Issues",
+    "deepdub-api-openapi-original.json: declared missing tag: TTS",
+    "deepdub-api-openapi-original.json: declared missing tag: Usage",
+    "deepdub-api-openapi-original.json: declared missing tag: Voice",
+    "deepdub-managed-dub-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "deepdub-managed-dub-openapi-original.json: tagged paths POST /dubbing/job -> Dubbing",
+    "deepdub-managed-dub-openapi-original.json: tagged paths GET /dubbing/job/{request_id} -> Dubbing",
+    "deepdub-managed-dub-openapi-original.json: tagged paths PUT /dubbing/job/{request_id} -> Dubbing",
+    "deepdub-managed-dub-openapi-original.json: tagged paths DELETE /dubbing/job/{request_id} -> Dubbing",
+    "deepdub-managed-dub-openapi-original.json: tagged paths PATCH /dubbing/job/{request_id} -> Dubbing",
+    "deepdub-managed-dub-openapi-original.json: tagged paths GET /dubbing/jobs -> Dubbing",
+    "deepdub-managed-dub-openapi-original.json: tagged paths POST /dubbing/job/{request_id}/sources -> Dubbing",
+    "deepdub-managed-dub-openapi-original.json: declared missing tag: Dubbing",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "deepdub-dubbing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "deepdub-gender-detection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "deepdub-infrastructure-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "deepdub-issues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "deepdub-tts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "deepdub-usage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "deepdub-voice-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

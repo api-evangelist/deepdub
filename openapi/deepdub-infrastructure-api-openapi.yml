@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Deepdub Dubbing Infrastructure API
+  title: Deepdub Infrastructure API
   description: Deepdub's Text-to-Speech API enables high-quality, expressive speech generation with voice cloning, accent control, and real-time streaming capabilities.
   contact:
     email: support@deepdub.ai
@@ -192,6 +192,32 @@ paths:
                 message: Internal server error
 components:
   schemas:
+    model.APIError:
+      description: Error response returned for all non-2xx status codes
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          description: Always false for error responses
+          type: boolean
+          example: false
+        message:
+          description: Human-readable error message
+          type: string
+          example: Invalid request parameters
+    model.UpdateASGRequest:
+      description: Request to update autoscaling group capacity
+      type: object
+      required:
+      - size
+      properties:
+        size:
+          description: Desired capacity for the autoscaling group
+          type: integer
+          minimum: 0
+          example: 5
     model.Response:
       description: Standard API success response wrapper
       type: object
@@ -208,32 +234,6 @@ components:
           example: Operation successful
         data:
           description: Response payload (varies by endpoint)
-    model.UpdateASGRequest:
-      description: Request to update autoscaling group capacity
-      type: object
-      required:
-      - size
-      properties:
-        size:
-          description: Desired capacity for the autoscaling group
-          type: integer
-          minimum: 0
-          example: 5
-    model.APIError:
-      description: Error response returned for all non-2xx status codes
-      type: object
-      required:
-      - success
-      - message
-      properties:
-        success:
-          description: Always false for error responses
-          type: boolean
-          example: false
-        message:
-          description: Human-readable error message
-          type: string
-          example: Invalid request parameters
     model.ConcurrentConnectionsResponse:
       description: Autoscaling group connection information
       type: object

@@ -1,0 +1,31 @@
+# Front Door AI Index — deepdub — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: deepdub
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: deepdub.ai
+  final_host: deepdub.ai
+  ownership: own
+  owner: deepdub
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 24
+  host_score: 24
+  density: 5.16
+  words: 4654
+  tiers:
+    agentic: 6
+    core: 18
+    model: 0
+  ambiguous: 5
+  top_terms:
+    AI: 17
+    agent: 5
+    AI agent: 3
+    LLMs: 1
+    agentic: 1
+    conversational AI: 1
+    prompts: 1
