@@ -192,32 +192,6 @@ paths:
                 message: Internal server error
 components:
   schemas:
-    model.APIError:
-      description: Error response returned for all non-2xx status codes
-      type: object
-      required:
-      - success
-      - message
-      properties:
-        success:
-          description: Always false for error responses
-          type: boolean
-          example: false
-        message:
-          description: Human-readable error message
-          type: string
-          example: Invalid request parameters
-    model.UpdateASGRequest:
-      description: Request to update autoscaling group capacity
-      type: object
-      required:
-      - size
-      properties:
-        size:
-          description: Desired capacity for the autoscaling group
-          type: integer
-          minimum: 0
-          example: 5
     model.Response:
       description: Standard API success response wrapper
       type: object
@@ -255,6 +229,32 @@ components:
               description: Desired number of connections in the autoscaling group
               type: integer
               example: 5
+    model.APIError:
+      description: Error response returned for all non-2xx status codes
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          description: Always false for error responses
+          type: boolean
+          example: false
+        message:
+          description: Human-readable error message
+          type: string
+          example: Invalid request parameters
+    model.UpdateASGRequest:
+      description: Request to update autoscaling group capacity
+      type: object
+      required:
+      - size
+      properties:
+        size:
+          description: Desired capacity for the autoscaling group
+          type: integer
+          minimum: 0
+          example: 5
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

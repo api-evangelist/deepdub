@@ -250,23 +250,10 @@ paths:
                 message: Failed to delete issue
 components:
   schemas:
-    model.IssueResponse:
-      description: Issue details
+    model.UpdateIssueRequest:
+      description: Payload for updating an existing issue. All fields are optional.
       type: object
       properties:
-        id:
-          type: string
-          example: iss_12345abcde
-        state:
-          description: Current state of the issue (e.g., open, in progress, resolved)
-          type: string
-          example: open
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
         generationId:
           type: string
         generatedText:
@@ -277,8 +264,25 @@ components:
           type: string
         additionalComments:
           type: string
+        problemAudioFile:
+          description: Optional base64-encoded audio clip to attach to the issue
+          type: string
         problemSeconds:
           type: number
+    model.IssueMessageResponse:
+      description: Simple message response
+      type: object
+      properties:
+        message:
+          type: string
+          example: Issue deleted
+    model.IssueErrorResponse:
+      description: Error response from the issues endpoints
+      type: object
+      properties:
+        message:
+          type: string
+          example: Issue not found
     model.CreateIssueRequest:
       description: Payload for creating a new issue against a TTS generation
       type: object
@@ -315,17 +319,23 @@ components:
           description: Seconds in the audio where the problem appears
           type: number
           example: 2.5
-    model.IssueMessageResponse:
-      description: Simple message response
+    model.IssueResponse:
+      description: Issue details
       type: object
       properties:
-        message:
+        id:
           type: string
-          example: Issue deleted
-    model.UpdateIssueRequest:
-      description: Payload for updating an existing issue. All fields are optional.
-      type: object
-      properties:
+          example: iss_12345abcde
+        state:
+          description: Current state of the issue (e.g., open, in progress, resolved)
+          type: string
+          example: open
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
         generationId:
           type: string
         generatedText:
@@ -336,18 +346,8 @@ components:
           type: string
         additionalComments:
           type: string
-        problemAudioFile:
-          description: Optional base64-encoded audio clip to attach to the issue
-          type: string
         problemSeconds:
           type: number
-    model.IssueErrorResponse:
-      description: Error response from the issues endpoints
-      type: object
-      properties:
-        message:
-          type: string
-          example: Issue not found
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
