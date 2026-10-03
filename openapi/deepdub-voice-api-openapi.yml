@@ -337,48 +337,45 @@ paths:
                 message: Internal server error
 components:
   schemas:
-    model.VoicePrompt:
-      description: A voice prompt representing a cloned or uploaded voice
+    model.APIError:
+      description: Error response returned for all non-2xx status codes
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          description: Always false for error responses
+          type: boolean
+          example: false
+        message:
+          description: Human-readable error message
+          type: string
+          example: Invalid request parameters
+    model.Response:
+      description: Standard API success response wrapper
+      type: object
+      required:
+      - success
+      properties:
+        success:
+          description: Whether the operation was successful
+          type: boolean
+          example: true
+        message:
+          description: Human-readable status message
+          type: string
+          example: Operation successful
+        data:
+          description: Response payload (varies by endpoint)
+    model.VoiceBankAPIResponse:
+      description: Response after creating or deleting a voice prompt
       type: object
       properties:
-        id:
-          description: Unique identifier for the voice prompt
+        voice_prompt_id:
+          description: Unique identifier of the created/affected voice prompt
           type: string
           example: vp_12345abcde
-        title:
-          description: Title of the voice prompt
-          type: string
-          example: Professional Narrator
-        name:
-          description: Display name of the voice prompt
-          type: string
-          example: Professional Female Voice
-        locale:
-          description: Locale of the voice prompt
-          type: string
-          example: en-US
-        text:
-          description: Transcript text associated with the voice prompt
-          type: string
-        createdAt:
-          description: Timestamp when the voice prompt was created
-          type: string
-          format: date-time
-        speakerId:
-          description: Unique identifier for the speaker
-          type: string
-        gender:
-          description: Gender of the voice
-          type: string
-          enum:
-          - MALE
-          - FEMALE
-          - NON_BINARY
-          example: FEMALE
-        speakingStyle:
-          description: Speaking style of the voice
-          type: string
-          example: narrative
     model.VoiceBankAPIRequest:
       description: Request to upload a voice sample and create a voice prompt
       type: object
@@ -428,30 +425,6 @@ components:
           description: Whether to make the voice prompt publicly available
           type: boolean
           example: false
-    model.Response:
-      description: Standard API success response wrapper
-      type: object
-      required:
-      - success
-      properties:
-        success:
-          description: Whether the operation was successful
-          type: boolean
-          example: true
-        message:
-          description: Human-readable status message
-          type: string
-          example: Operation successful
-        data:
-          description: Response payload (varies by endpoint)
-    model.VoiceBankAPIResponse:
-      description: Response after creating or deleting a voice prompt
-      type: object
-      properties:
-        voice_prompt_id:
-          description: Unique identifier of the created/affected voice prompt
-          type: string
-          example: vp_12345abcde
     model.VoiceBankAPIUpdateRequest:
       description: Request to update a voice prompt's metadata
       type: object
@@ -482,21 +455,48 @@ components:
           description: Age of the speaker
           type: integer
           example: 35
-    model.APIError:
-      description: Error response returned for all non-2xx status codes
+    model.VoicePrompt:
+      description: A voice prompt representing a cloned or uploaded voice
       type: object
-      required:
-      - success
-      - message
       properties:
-        success:
-          description: Always false for error responses
-          type: boolean
-          example: false
-        message:
-          description: Human-readable error message
+        id:
+          description: Unique identifier for the voice prompt
           type: string
-          example: Invalid request parameters
+          example: vp_12345abcde
+        title:
+          description: Title of the voice prompt
+          type: string
+          example: Professional Narrator
+        name:
+          description: Display name of the voice prompt
+          type: string
+          example: Professional Female Voice
+        locale:
+          description: Locale of the voice prompt
+          type: string
+          example: en-US
+        text:
+          description: Transcript text associated with the voice prompt
+          type: string
+        createdAt:
+          description: Timestamp when the voice prompt was created
+          type: string
+          format: date-time
+        speakerId:
+          description: Unique identifier for the speaker
+          type: string
+        gender:
+          description: Gender of the voice
+          type: string
+          enum:
+          - MALE
+          - FEMALE
+          - NON_BINARY
+          example: FEMALE
+        speakingStyle:
+          description: Speaking style of the voice
+          type: string
+          example: narrative
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
