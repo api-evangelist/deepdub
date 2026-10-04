@@ -242,95 +242,28 @@ paths:
       - Dubbing
 components:
   schemas:
-    IssueSeverity:
+    MixTypeEnum:
       type: string
       enum:
-      - SUGGESTION
-      - MINOR
-      - MAJOR
-      - CRITICAL
-      title: IssueSeverity
-      description: 'Severity level of a quality issue: SUGGESTION (nice-to-have) through CRITICAL (must-fix).'
-    AdditionalSourcesEnum:
-      type: string
-      enum:
-      - AUDIO_HINTS
-      - CC_SDH
-      - MISC
-      - DFXP_SUBTITLES
-      title: AdditionalSourcesEnum
-      description: Type of additional source asset that can be attached to a dubbing job as input reference material.
-    RedubbingSubmissionResponse:
+      - UN_STYLE
+      - REPLACEMENT
+      title: MixTypeEnum
+      description: 'Audio mixing strategy: REPLACEMENT (replace original dialogue track) or UN_STYLE (overlay dubbed audio on the original).'
+    DubbingSubmissionUpdateRequest:
       properties:
-        requestId:
+        needByDate:
           type: string
-          title: Requestid
-          description: Unique identifier for the redubbing submission request (e.g., 'redub_req_001')
-      type: object
-      required:
-      - requestId
-      title: RedubbingSubmissionResponse
-    DubbingStatusResponse:
-      properties:
-        requestId:
-          type: string
-          title: Requestid
-        status:
-          $ref: '#/components/schemas/ManagedDubProgressStatusEnum'
-        detailedTrace:
-          type: string
-          title: Detailedtrace
-        exportPath:
-          type: string
-          title: Exportpath
-        additionalProducts:
-          items:
-            $ref: '#/components/schemas/DubbingSubmissionAdditionalProduct'
-          type: array
-          title: Additionalproducts
+          format: date-time
+          title: Needbydate
+          description: Date by which the dubbed content is needed (e.g., '2024-07-01T12:00:00Z')
         metadata:
           additionalProperties:
             type: string
           type: object
           title: Metadata
+          description: 'Metadata attached to the dubbing job (e.g., {''key'': ''value''})'
       type: object
-      required:
-      - requestId
-      - status
-      - detailedTrace
-      - exportPath
-      - additionalProducts
-      - metadata
-      title: DubbingStatusResponse
-    AdditionalProductStateEnum:
-      type: string
-      enum:
-      - PENDING_DELIVERY
-      - DELIVERED
-      title: AdditionalProductStateEnum
-      description: 'State of an additional product in the delivery lifecycle.
-
-
-        None   – legacy / unknown (pre-deployment products, not shown as pending).
-
-        PENDING_DELIVERY – explicitly awaiting delivery.
-
-        DELIVERED        – already delivered to the customer.'
-    DubbingSubmissionAdditionalSource:
-      properties:
-        source:
-          allOf:
-          - $ref: '#/components/schemas/AdditionalSourcesEnum'
-          description: Type of source asset (e.g., 'AUDIO_HINTS', 'CC_SDH', 'MISC', 'DFXP_SUBTITLES')
-        assetPath:
-          type: string
-          title: Assetpath
-          description: S3 path to the asset file (must start with 's3://', e.g., 's3://bucket/asset.mp4')
-      type: object
-      required:
-      - source
-      - assetPath
-      title: DubbingSubmissionAdditionalSource
+      title: DubbingSubmissionUpdateRequest
     RedubbingIssue:
       properties:
         timestampStart:
@@ -376,6 +309,168 @@ components:
       - details
       - timestamp
       title: RedubbingIssue
+    IssueCategory:
+      type: string
+      enum:
+      - SYNTHESIS
+      - TRANSLATION
+      - TIMING
+      - MIX
+      title: IssueCategory
+      description: High-level category of a quality issue reported during redubbing review.
+    AdditionalProductStateEnum:
+      type: string
+      enum:
+      - PENDING_DELIVERY
+      - DELIVERED
+      title: AdditionalProductStateEnum
+      description: 'State of an additional product in the delivery lifecycle.
+
+
+        None   – legacy / unknown (pre-deployment products, not shown as pending).
+
+        PENDING_DELIVERY – explicitly awaiting delivery.
+
+        DELIVERED        – already delivered to the customer.'
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    DubbingStatusListResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DubbingStatusResponse'
+          type: array
+          title: Items
+        nextToken:
+          type: string
+          title: Nexttoken
+      type: object
+      required:
+      - items
+      title: DubbingStatusListResponse
+    ManagedDubProgressStatusEnum:
+      type: string
+      enum:
+      - INTAKE_PREPROCESSING
+      - INTAKE_VALIDATION
+      - INTAKE_FAILED
+      - INTAKE_APPROVED
+      - CASTING
+      - ADAPTGEN_START
+      - ADAPTGEN_MIDWAY
+      - READY_FOR_QC
+      - QC
+      - QC_IN_REVIEW
+      - ADAPTGEN_QC_FIX
+      - READY_FOR_DMX
+      - DMX_DONE
+      - READY_FOR_MIXING
+      - MIXING_IN_PROGRESS
+      - READY_FOR_MIX_QC
+      - MIX_QC_IN_PROGRESS
+      - DELIVERED_TO_CLIENT
+      - CLIENT_REFIX_PROCESSING
+      - CLIENT_REFIX_REJECTED
+      - CLIENT_REFIX
+      - FAILURE
+      - READY_FOR_REDMX
+      - PARKED_REQUEST
+      - PARKED_REQUEST_RECEIVED
+      - REDMX_DONE
+      - REDELIVERED_TO_CLIENT
+      title: ManagedDubProgressStatusEnum
+      description: Lifecycle status of a dubbing job, from initial intake through delivery and optional client re-fixes.
+    DubbingSubmissionAdditionalProduct:
+      properties:
+        product:
+          allOf:
+          - $ref: '#/components/schemas/AdditionalProductsEnum'
+          description: Type of product to deliver (e.g., 'SDH', 'SRT', 'WEBVTT', 'TRANSCRIPT')
+        assetPath:
+          type: string
+          title: Assetpath
+          description: S3 path to the asset file (must start with 's3://', e.g., 's3://bucket/asset.mp4')
+        state:
+          allOf:
+          - $ref: '#/components/schemas/AdditionalProductStateEnum'
+          description: 'Delivery state: None means pending delivery, DELIVERED means already delivered.'
+      type: object
+      required:
+      - product
+      - assetPath
+      title: DubbingSubmissionAdditionalProduct
+    DubbingSubmissionResponse:
+      properties:
+        requestId:
+          type: string
+          title: Requestid
+      type: object
+      required:
+      - requestId
+      title: DubbingSubmissionResponse
+    RedubbingSubmissionResponse:
+      properties:
+        requestId:
+          type: string
+          title: Requestid
+          description: Unique identifier for the redubbing submission request (e.g., 'redub_req_001')
+      type: object
+      required:
+      - requestId
+      title: RedubbingSubmissionResponse
+    AdditionalProductsEnum:
+      type: string
+      enum:
+      - SDH
+      - SRT
+      - WEBVTT
+      - TRANSCRIPT
+      - AS_RECORDED_SCRIPT
+      - AUDIO_HINTS
+      - SOURCE_VIDEO
+      - SOURCE_AUDIO
+      - ITT_SUBTITLES
+      title: AdditionalProductsEnum
+      description: Type of deliverable product that can be requested alongside (or instead of) the dubbed video.
+    DubbingStatusResponse:
+      properties:
+        requestId:
+          type: string
+          title: Requestid
+        status:
+          $ref: '#/components/schemas/ManagedDubProgressStatusEnum'
+        detailedTrace:
+          type: string
+          title: Detailedtrace
+        exportPath:
+          type: string
+          title: Exportpath
+        additionalProducts:
+          items:
+            $ref: '#/components/schemas/DubbingSubmissionAdditionalProduct'
+          type: array
+          title: Additionalproducts
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+          title: Metadata
+      type: object
+      required:
+      - requestId
+      - status
+      - detailedTrace
+      - exportPath
+      - additionalProducts
+      - metadata
+      title: DubbingStatusResponse
     DubbingSegment:
       properties:
         timestampStart:
@@ -414,6 +509,36 @@ components:
       - characterId
       - sourceDialogue
       title: DubbingSegment
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    AdditionalSourcesEnum:
+      type: string
+      enum:
+      - AUDIO_HINTS
+      - CC_SDH
+      - MISC
+      - DFXP_SUBTITLES
+      title: AdditionalSourcesEnum
+      description: Type of additional source asset that can be attached to a dubbing job as input reference material.
     RedubbingSubmissionRequest:
       properties:
         generalFeedback:
@@ -445,22 +570,54 @@ components:
       required:
       - generalFeedback
       title: RedubbingSubmissionRequest
-    DubbingSubmissionResponse:
-      properties:
-        requestId:
-          type: string
-          title: Requestid
-      type: object
-      required:
-      - requestId
-      title: DubbingSubmissionResponse
-    MixTypeEnum:
+    IssueLabel:
       type: string
       enum:
-      - UN_STYLE
-      - REPLACEMENT
-      title: MixTypeEnum
-      description: 'Audio mixing strategy: REPLACEMENT (replace original dialogue track) or UN_STYLE (overlay dubbed audio on the original).'
+      - ACCENT
+      - ADAPTATION
+      - AUDIO_ARTIFACT
+      - EMOTION
+      - EMPHASIS
+      - MISPRONUNCIATION
+      - MISSING_AUDIO
+      - MIX
+      - RHYTHM
+      - SPEAKER_CONSISTENCY
+      - TIMING_LIPSYNC
+      title: IssueLabel
+      description: Specific label describing the nature of a quality issue.
+    WorkflowTypeEnum:
+      type: string
+      enum:
+      - AUTOMATED
+      - MANAGED
+      - MANAGED_HIGH_TIER
+      title: WorkflowTypeEnum
+      description: 'Dubbing workflow tier: AUTOMATED (fully automated), MANAGED (human-in-the-loop QC), or MANAGED_HIGH_TIER (premium managed).'
+    DubbingSubmissionAdditionalSource:
+      properties:
+        source:
+          allOf:
+          - $ref: '#/components/schemas/AdditionalSourcesEnum'
+          description: Type of source asset (e.g., 'AUDIO_HINTS', 'CC_SDH', 'MISC', 'DFXP_SUBTITLES')
+        assetPath:
+          type: string
+          title: Assetpath
+          description: S3 path to the asset file (must start with 's3://', e.g., 's3://bucket/asset.mp4')
+      type: object
+      required:
+      - source
+      - assetPath
+      title: DubbingSubmissionAdditionalSource
+    IssueSeverity:
+      type: string
+      enum:
+      - SUGGESTION
+      - MINOR
+      - MAJOR
+      - CRITICAL
+      title: IssueSeverity
+      description: 'Severity level of a quality issue: SUGGESTION (nice-to-have) through CRITICAL (must-fix).'
     DubbingSubmissionRequest:
       properties:
         sourceLocale:
@@ -573,163 +730,6 @@ components:
       - targetLocale
       - sourceVideoPath
       title: DubbingSubmissionRequest
-    IssueLabel:
-      type: string
-      enum:
-      - ACCENT
-      - ADAPTATION
-      - AUDIO_ARTIFACT
-      - EMOTION
-      - EMPHASIS
-      - MISPRONUNCIATION
-      - MISSING_AUDIO
-      - MIX
-      - RHYTHM
-      - SPEAKER_CONSISTENCY
-      - TIMING_LIPSYNC
-      title: IssueLabel
-      description: Specific label describing the nature of a quality issue.
-    DubbingSubmissionAdditionalProduct:
-      properties:
-        product:
-          allOf:
-          - $ref: '#/components/schemas/AdditionalProductsEnum'
-          description: Type of product to deliver (e.g., 'SDH', 'SRT', 'WEBVTT', 'TRANSCRIPT')
-        assetPath:
-          type: string
-          title: Assetpath
-          description: S3 path to the asset file (must start with 's3://', e.g., 's3://bucket/asset.mp4')
-        state:
-          allOf:
-          - $ref: '#/components/schemas/AdditionalProductStateEnum'
-          description: 'Delivery state: None means pending delivery, DELIVERED means already delivered.'
-      type: object
-      required:
-      - product
-      - assetPath
-      title: DubbingSubmissionAdditionalProduct
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    IssueCategory:
-      type: string
-      enum:
-      - SYNTHESIS
-      - TRANSLATION
-      - TIMING
-      - MIX
-      title: IssueCategory
-      description: High-level category of a quality issue reported during redubbing review.
-    AdditionalProductsEnum:
-      type: string
-      enum:
-      - SDH
-      - SRT
-      - WEBVTT
-      - TRANSCRIPT
-      - AS_RECORDED_SCRIPT
-      - AUDIO_HINTS
-      - SOURCE_VIDEO
-      - SOURCE_AUDIO
-      - ITT_SUBTITLES
-      title: AdditionalProductsEnum
-      description: Type of deliverable product that can be requested alongside (or instead of) the dubbed video.
-    WorkflowTypeEnum:
-      type: string
-      enum:
-      - AUTOMATED
-      - MANAGED
-      - MANAGED_HIGH_TIER
-      title: WorkflowTypeEnum
-      description: 'Dubbing workflow tier: AUTOMATED (fully automated), MANAGED (human-in-the-loop QC), or MANAGED_HIGH_TIER (premium managed).'
-    DubbingStatusListResponse:
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/DubbingStatusResponse'
-          type: array
-          title: Items
-        nextToken:
-          type: string
-          title: Nexttoken
-      type: object
-      required:
-      - items
-      title: DubbingStatusListResponse
-    ManagedDubProgressStatusEnum:
-      type: string
-      enum:
-      - INTAKE_PREPROCESSING
-      - INTAKE_VALIDATION
-      - INTAKE_FAILED
-      - INTAKE_APPROVED
-      - CASTING
-      - ADAPTGEN_START
-      - ADAPTGEN_MIDWAY
-      - READY_FOR_QC
-      - QC
-      - QC_IN_REVIEW
-      - ADAPTGEN_QC_FIX
-      - READY_FOR_DMX
-      - DMX_DONE
-      - READY_FOR_MIXING
-      - MIXING_IN_PROGRESS
-      - READY_FOR_MIX_QC
-      - MIX_QC_IN_PROGRESS
-      - DELIVERED_TO_CLIENT
-      - CLIENT_REFIX_PROCESSING
-      - CLIENT_REFIX_REJECTED
-      - CLIENT_REFIX
-      - FAILURE
-      - READY_FOR_REDMX
-      - PARKED_REQUEST
-      - PARKED_REQUEST_RECEIVED
-      - REDMX_DONE
-      - REDELIVERED_TO_CLIENT
-      title: ManagedDubProgressStatusEnum
-      description: Lifecycle status of a dubbing job, from initial intake through delivery and optional client re-fixes.
-    DubbingSubmissionUpdateRequest:
-      properties:
-        needByDate:
-          type: string
-          format: date-time
-          title: Needbydate
-          description: Date by which the dubbed content is needed (e.g., '2024-07-01T12:00:00Z')
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-          title: Metadata
-          description: 'Metadata attached to the dubbing job (e.g., {''key'': ''value''})'
-      type: object
-      title: DubbingSubmissionUpdateRequest
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

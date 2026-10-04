@@ -146,6 +146,17 @@ components:
         detail:
           type: string
           example: Either audio_url or audio_base64 must be provided
+    model.GenderClassificationRequest:
+      description: Request for gender classification from audio
+      type: object
+      properties:
+        audio_url:
+          description: URL to an audio file (S3 or HTTP). Provide either audio_url or audio_base64.
+          type: string
+          example: https://example.com/audio/sample.wav
+        audio_base64:
+          description: Base64-encoded audio data. Provide either audio_url or audio_base64.
+          type: string
     model.GenderClassificationResponse:
       description: Gender classification result
       type: object
@@ -186,17 +197,6 @@ components:
           description: Processing time in milliseconds
           type: number
           example: 120.5
-    model.GenderClassificationRequest:
-      description: Request for gender classification from audio
-      type: object
-      properties:
-        audio_url:
-          description: URL to an audio file (S3 or HTTP). Provide either audio_url or audio_base64.
-          type: string
-          example: https://example.com/audio/sample.wav
-        audio_base64:
-          description: Base64-encoded audio data. Provide either audio_url or audio_base64.
-          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

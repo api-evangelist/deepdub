@@ -90,6 +90,21 @@ paths:
                 message: Internal server error
 components:
   schemas:
+    model.APIError:
+      description: Error response returned for all non-2xx status codes
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          description: Always false for error responses
+          type: boolean
+          example: false
+        message:
+          description: Human-readable error message
+          type: string
+          example: Invalid request parameters
     model.GenerationRequest:
       description: 'Request structure for TTS generation endpoints.
 
@@ -120,21 +135,6 @@ components:
           type: string
           example: bd1b00bb-be1c-4679-8eaa-0fcbfd4ff773
       additionalProperties: true
-    model.APIError:
-      description: Error response returned for all non-2xx status codes
-      type: object
-      required:
-      - success
-      - message
-      properties:
-        success:
-          description: Always false for error responses
-          type: boolean
-          example: false
-        message:
-          description: Human-readable error message
-          type: string
-          example: Invalid request parameters
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
