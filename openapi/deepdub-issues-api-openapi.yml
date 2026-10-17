@@ -250,6 +250,13 @@ paths:
                 message: Failed to delete issue
 components:
   schemas:
+    model.IssueMessageResponse:
+      description: Simple message response
+      type: object
+      properties:
+        message:
+          type: string
+          example: Issue deleted
     model.UpdateIssueRequest:
       description: Payload for updating an existing issue. All fields are optional.
       type: object
@@ -269,6 +276,13 @@ components:
           type: string
         problemSeconds:
           type: number
+    model.IssueErrorResponse:
+      description: Error response from the issues endpoints
+      type: object
+      properties:
+        message:
+          type: string
+          example: Issue not found
     model.CreateIssueRequest:
       description: Payload for creating a new issue against a TTS generation
       type: object
@@ -305,20 +319,6 @@ components:
           description: Seconds in the audio where the problem appears
           type: number
           example: 2.5
-    model.IssueErrorResponse:
-      description: Error response from the issues endpoints
-      type: object
-      properties:
-        message:
-          type: string
-          example: Issue not found
-    model.IssueMessageResponse:
-      description: Simple message response
-      type: object
-      properties:
-        message:
-          type: string
-          example: Issue deleted
     model.IssueResponse:
       description: Issue details
       type: object
