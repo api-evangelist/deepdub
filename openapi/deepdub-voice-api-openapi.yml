@@ -337,6 +337,75 @@ paths:
                 message: Internal server error
 components:
   schemas:
+    model.VoiceBankAPIUpdateRequest:
+      description: Request to update a voice prompt's metadata
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          description: Unique identifier for the voice prompt to update
+          type: string
+          example: vp_12345abcde
+        name:
+          description: New display name for the voice prompt
+          type: string
+          example: Professional Female Voice
+        locale:
+          description: Language locale code
+          type: string
+          example: en-US
+        gender:
+          description: Gender of the speaker
+          type: string
+          enum:
+          - MALE
+          - FEMALE
+          - NON_BINARY
+          example: FEMALE
+        age:
+          description: Age of the speaker
+          type: integer
+          example: 35
+    model.VoiceBankAPIResponse:
+      description: Response after creating or deleting a voice prompt
+      type: object
+      properties:
+        voice_prompt_id:
+          description: Unique identifier of the created/affected voice prompt
+          type: string
+          example: vp_12345abcde
+    model.Response:
+      description: Standard API success response wrapper
+      type: object
+      required:
+      - success
+      properties:
+        success:
+          description: Whether the operation was successful
+          type: boolean
+          example: true
+        message:
+          description: Human-readable status message
+          type: string
+          example: Operation successful
+        data:
+          description: Response payload (varies by endpoint)
+    model.APIError:
+      description: Error response returned for all non-2xx status codes
+      type: object
+      required:
+      - success
+      - message
+      properties:
+        success:
+          description: Always false for error responses
+          type: boolean
+          example: false
+        message:
+          description: Human-readable error message
+          type: string
+          example: Invalid request parameters
     model.VoiceBankAPIRequest:
       description: Request to upload a voice sample and create a voice prompt
       type: object
@@ -386,21 +455,6 @@ components:
           description: Whether to make the voice prompt publicly available
           type: boolean
           example: false
-    model.APIError:
-      description: Error response returned for all non-2xx status codes
-      type: object
-      required:
-      - success
-      - message
-      properties:
-        success:
-          description: Always false for error responses
-          type: boolean
-          example: false
-        message:
-          description: Human-readable error message
-          type: string
-          example: Invalid request parameters
     model.VoicePrompt:
       description: A voice prompt representing a cloned or uploaded voice
       type: object
@@ -443,60 +497,6 @@ components:
           description: Speaking style of the voice
           type: string
           example: narrative
-    model.Response:
-      description: Standard API success response wrapper
-      type: object
-      required:
-      - success
-      properties:
-        success:
-          description: Whether the operation was successful
-          type: boolean
-          example: true
-        message:
-          description: Human-readable status message
-          type: string
-          example: Operation successful
-        data:
-          description: Response payload (varies by endpoint)
-    model.VoiceBankAPIUpdateRequest:
-      description: Request to update a voice prompt's metadata
-      type: object
-      required:
-      - id
-      properties:
-        id:
-          description: Unique identifier for the voice prompt to update
-          type: string
-          example: vp_12345abcde
-        name:
-          description: New display name for the voice prompt
-          type: string
-          example: Professional Female Voice
-        locale:
-          description: Language locale code
-          type: string
-          example: en-US
-        gender:
-          description: Gender of the speaker
-          type: string
-          enum:
-          - MALE
-          - FEMALE
-          - NON_BINARY
-          example: FEMALE
-        age:
-          description: Age of the speaker
-          type: integer
-          example: 35
-    model.VoiceBankAPIResponse:
-      description: Response after creating or deleting a voice prompt
-      type: object
-      properties:
-        voice_prompt_id:
-          description: Unique identifier of the created/affected voice prompt
-          type: string
-          example: vp_12345abcde
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

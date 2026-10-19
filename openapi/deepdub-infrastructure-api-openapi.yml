@@ -192,6 +192,43 @@ paths:
                 message: Internal server error
 components:
   schemas:
+    model.Response:
+      description: Standard API success response wrapper
+      type: object
+      required:
+      - success
+      properties:
+        success:
+          description: Whether the operation was successful
+          type: boolean
+          example: true
+        message:
+          description: Human-readable status message
+          type: string
+          example: Operation successful
+        data:
+          description: Response payload (varies by endpoint)
+    model.ConcurrentConnectionsResponse:
+      description: Autoscaling group connection information
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Operation successful
+        data:
+          type: object
+          properties:
+            concurrent_connections:
+              description: Current number of active connections
+              type: integer
+              example: 3
+            desired_concurrent_connections:
+              description: Desired number of connections in the autoscaling group
+              type: integer
+              example: 5
     model.APIError:
       description: Error response returned for all non-2xx status codes
       type: object
@@ -218,43 +255,6 @@ components:
           type: integer
           minimum: 0
           example: 5
-    model.ConcurrentConnectionsResponse:
-      description: Autoscaling group connection information
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: Operation successful
-        data:
-          type: object
-          properties:
-            concurrent_connections:
-              description: Current number of active connections
-              type: integer
-              example: 3
-            desired_concurrent_connections:
-              description: Desired number of connections in the autoscaling group
-              type: integer
-              example: 5
-    model.Response:
-      description: Standard API success response wrapper
-      type: object
-      required:
-      - success
-      properties:
-        success:
-          description: Whether the operation was successful
-          type: boolean
-          example: true
-        message:
-          description: Human-readable status message
-          type: string
-          example: Operation successful
-        data:
-          description: Response payload (varies by endpoint)
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

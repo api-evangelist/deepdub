@@ -191,6 +191,16 @@ apis:
     url: https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio
   - type: Documentation
     url: https://docs.deepdub.ai/managed-dub/subtitle-only-flow
+- aid: deepdub:deepdub-provenance-api
+  name: Deepdub Provenance API
+  description: The Provenance API from Deepdub — 1 operation(s) for provenance.
+  humanURL: https://docs.deepdub.ai/
+  baseURL: https://restapi.deepdub.ai/api/v1
+  tags:
+  - Provenance
+  properties:
+  - type: OpenAPI
+    url: openapi/deepdub-provenance-api-openapi.yml
 common:
 - type: Plans
   url: plans/deepdub-plans-pricing.yml
