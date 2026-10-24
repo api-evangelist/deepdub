@@ -149,6 +149,8 @@ apis:
   humanURL: https://docs.deepdub.ai/
   baseURL: https://restapi.deepdub.ai/api/v1
   tags:
+  - Text-to-Speech
+  tags_raw:
   - TTS
   properties:
   - type: OpenAPI
