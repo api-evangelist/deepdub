@@ -1,4 +1,4 @@
-# deepdub
+# Deepdub
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,6 +64,144 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-deepdub is a company surfaced as a portfolio company of insight-partners and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Deepdub is an AI dubbing, voice-cloning, and text-to-speech company that turns content into natural, emotionally adaptive speech across 100+ languages. Its platform powers media dubbing for studios such as Paramount, Netflix, and Prime Video, real-time AI voice agents (~125ms latency), video localization, live broadcast, and voice cloning. Deepdub exposes a developer platform: a REST Text-to-Speech API (restapi.deepdub.ai) covering TTS generation, a voice bank, gender detection, usage, and issue tracking; a Managed Dubbing API (dubbing.deepdub.app) for end-to-end video dubbing jobs; and a WebSocket streaming API for real-time audio. Authentication is via an x-api-key header, with Python and Node.js SDKs, published OpenAPI specs, and agent files (AGENTS.md, Cursor skill). Deepdub is backed by Insight Partners.
 
-Backed by: insight-partners — https://deepdub.ai/
+**Areas:** Company · Voice · Text-to-Speech · Dubbing · Localization · Speech Synthesis · Voice Cloning · Media · Artificial Intelligence · Audio
+
+## Deepdub on APIs.io
+
+Everything profiled for Deepdub is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/deepdub/](https://apis.io/providers/deepdub/)** — or go straight to one of the APIs or properties below.
+
+### APIs (7)
+
+- [Deepdub Dubbing API](https://apis.io/apis/deepdub/deepdub-dubbing-api/) — The Dubbing API from Deepdub — 4 operation(s) for dubbing.
+- [Deepdub Gender Detection API](https://apis.io/apis/deepdub/deepdub-gender-detection-api/) — The Gender Detection API from Deepdub — 2 operation(s) for gender detection.
+- [Deepdub Infrastructure API](https://apis.io/apis/deepdub/deepdub-infrastructure-api/) — The Infrastructure API from Deepdub — 2 operation(s) for infrastructure.
+- [Deepdub Issues API](https://apis.io/apis/deepdub/deepdub-issues-api/) — The Issues API from Deepdub — 2 operation(s) for issues.
+- [Deepdub TTS API](https://apis.io/apis/deepdub/deepdub-tts-api/) — The TTS API from Deepdub — 1 operation(s) for tts.
+- [Deepdub Usage API](https://apis.io/apis/deepdub/deepdub-usage-api/) — The Usage API from Deepdub — 2 operation(s) for usage.
+- [Deepdub Voice API](https://apis.io/apis/deepdub/deepdub-voice-api/) — The Voice API from Deepdub — 2 operation(s) for voice.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [deepdub](https://apis.io/servers/deepdub/deepdub/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Deepdub Agentic Access](https://apis.io/agentic-access/deepdub/deepdub-agentic-access/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Deepdub Dubbing API](https://apis.io/collections/deepdub/open-deepdub-dubbing-api/)
+- [Deepdub Dubbing Gender Detection API](https://apis.io/collections/deepdub/open-deepdub-gender-detection-api/)
+- [Deepdub Dubbing Infrastructure API](https://apis.io/collections/deepdub/open-deepdub-infrastructure-api/)
+- [Deepdub Dubbing Issues API](https://apis.io/collections/deepdub/open-deepdub-issues-api/)
+- [Deepdub Dubbing TTS API](https://apis.io/collections/deepdub/open-deepdub-tts-api/)
+- [Deepdub Dubbing Usage API](https://apis.io/collections/deepdub/open-deepdub-usage-api/)
+- [Deepdub Dubbing Voice API](https://apis.io/collections/deepdub/open-deepdub-voice-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Deepdub Api Overlay](https://apis.io/overlays/deepdub/deepdub-api-overlay/)
+- [Deepdub Managed Dub Overlay](https://apis.io/overlays/deepdub/deepdub-managed-dub-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Deepdub Authentication](https://apis.io/security/deepdub/deepdub-authentication/)
+- [Deepdub Domain Security](https://apis.io/security/deepdub/deepdub-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Deepdub Plans Pricing](https://apis.io/plans/deepdub/deepdub-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Deepdub Rate Limits](https://apis.io/rate-limits/deepdub/deepdub-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://deepdub.ai/)
+- [Documentation](https://docs.deepdub.ai/introduction)
+- [Getting started](https://docs.deepdub.ai/quickstart)
+- [API reference](https://docs.deepdub.ai/api-reference/tts/generate-and-stream-tts-audio)
+- [Pricing](https://deepdub.ai/demo)
+- [Sign up](https://app.deepdub.ai/signup)
+- [Blog](https://deepdub.ai/blog)
+- [Terms of service](https://deepdub.ai/legal/terms-of-use)
+- [Privacy policy](https://deepdub.ai/legal/privacy)
+- [GitHub](https://github.com/deepdub-ai)
+
+## API Evangelist rating
+
+**Kin Score 47.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 59.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 38.2 |
+
+**Agent readiness 33.4** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 21.9** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/deepdub/](https://apis.io/providers/deepdub/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Deepdub: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/deepdub/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
